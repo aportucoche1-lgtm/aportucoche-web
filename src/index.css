@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-gray-900 antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-navy-700 hover:bg-navy-800 active:bg-navy-900 text-white font-semibold rounded-xl transition-all duration-150 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-50 active:bg-gray-100 text-gray-700 font-semibold rounded-xl border border-gray-200 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2;
+  }
+
+  .btn-green {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-green hover:bg-brand-green-dark text-white font-semibold rounded-xl transition-all duration-150 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2;
+  }
+
+  .input-base {
+    @apply w-full px-3.5 py-2.5 text-sm border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition-all placeholder-gray-400;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-card hover:shadow-card-hover transition-shadow duration-200;
+  }
+
+  .badge-chollo {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold rounded-full;
+  }
+
+  .badge-good {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold rounded-full;
+  }
+
+  .badge-normal {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 bg-gray-50 text-gray-600 border border-gray-200 text-xs font-semibold rounded-full;
+  }
+
+  .badge-high {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 bg-red-50 text-red-600 border border-red-200 text-xs font-semibold rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

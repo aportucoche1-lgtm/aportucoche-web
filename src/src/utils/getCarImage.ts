@@ -1,18 +1,12 @@
 export const getCarImage = (brand?: string, model?: string) => {
-  const cleanBrand = brand?.trim() || ""
-  const cleanModel = model?.trim() || ""
+  const fallback =
+    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200"
 
-  if (cleanBrand && cleanModel) {
-    return `https://source.unsplash.com/800x600/?${encodeURIComponent(
-      `${cleanBrand} ${cleanModel} car`
-    )}`
-  }
+  if (!brand && !model) return fallback
 
-  if (cleanBrand) {
-    return `https://source.unsplash.com/800x600/?${encodeURIComponent(
-      `${cleanBrand} car`
-    )}`
-  }
+  const query = [brand, model, "car"]
+    .filter(Boolean)
+    .join(" ")
 
-  return `https://source.unsplash.com/800x600/?car`
+  return `https://source.unsplash.com/800x600/?${encodeURIComponent(query)}`
 }

@@ -1,3 +1,4 @@
+import { getCarImage } from "../utils/getCarImage"
 import { ExternalLink, Fuel, Gauge, Heart, MapPin } from 'lucide-react';
 import { Car, AIValuation } from '../../types';
 import { AIBadge } from './AIBadge';
@@ -39,7 +40,7 @@ export function CarCard({ car, valuation, isFavorite, onToggleFavorite, isLogged
     >
       <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}>
         <img
-          src={imageUrl}
+          src={getCarImage(car.brand, car.model)}
           alt={`${car.brand} ${car.model}`}
           className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
           onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK_IMAGE; }}

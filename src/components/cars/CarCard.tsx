@@ -38,16 +38,13 @@ export function CarCard({ car, valuation, isFavorite, onToggleFavorite, isLogged
           : '0 1px 4px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05)',
       }}
     >
-    <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}> 
-<div
-  style={{
-    width: "100%",
-    height: "200px",
-    backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200')",
-    backgroundSize: "cover",
-    backgroundPosition: "center"
-  }}
-/>
+    <div className="relative overflow-hidden bg-gray-100">
+
+  <div style={{ background: "red", height: "200px" }}>
+    TEST
+  </div>
+
+</div>
 
        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 

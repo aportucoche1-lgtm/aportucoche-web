@@ -40,6 +40,9 @@ export function CarCard({ car, valuation, isFavorite, onToggleFavorite, isLogged
     >
       <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}>
         <img
+          <p style={{ fontSize: "10px" }}>
+  {JSON.stringify(car)}
+</p>
   src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200"
   alt="car"
   style={{ width: "100%", height: "200px", objectFit: "cover" }}

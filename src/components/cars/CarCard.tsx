@@ -39,12 +39,11 @@ export function CarCard({ car, valuation, isFavorite, onToggleFavorite, isLogged
       }}
     >
       <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}>
-       <img
+    <img
   src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200"
-  alt={`${car.brand} ${car.model}`}
-  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
-  onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK_IMAGE; }}
-  loading="lazy"
+  alt="car"
+  className="w-full h-full object-cover"
+/>
 />
           className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
           onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK_IMAGE; }}

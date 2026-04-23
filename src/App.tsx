@@ -1,3 +1,4 @@
+console.log("APP FUNCIONANDO")
 import { useState } from 'react';
 import { AuthModal } from './components/auth/AuthModal';
 import { AdminPanel } from './components/admin/AdminPanel';

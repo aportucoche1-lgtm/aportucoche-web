@@ -39,12 +39,11 @@ export function CarCard({ car, valuation, isFavorite, onToggleFavorite, isLogged
       }}
     >
     <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}> 
-  <img
+ <img
   src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200"
   alt="car"
-  className="w-full h-full object-cover"
+  style={{ width: "100%", height: "200px", objectFit: "cover" }}
 />
-  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
 </div>
           className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"

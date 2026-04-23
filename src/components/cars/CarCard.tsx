@@ -44,7 +44,6 @@ export function CarCard({ car, valuation, isFavorite, onToggleFavorite, isLogged
   alt="car"
   className="w-full h-full object-cover"
 />
-/>
           className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
           onError={(e) => { (e.target as HTMLImageElement).src = FALLBACK_IMAGE; }}
           loading="lazy"

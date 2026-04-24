@@ -22,13 +22,11 @@ export default function App() {
 
   const renderPage = () => {
     if (currentPath === '/' || currentPath === '') {
-      return (
-        <Home
-          onNavigate={navigate}
-          onOpenAuth={handleOpenAuth}
-          isLoggedIn={!!user}
-        />
-      );
+    return (
+  <div style={{ background: "black", color: "white", height: "100vh" }}>
+    APP TEST
+  </div>
+);
     }
 
     if (currentPath.startsWith('/coches')) {

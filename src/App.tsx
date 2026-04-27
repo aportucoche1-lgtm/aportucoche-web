@@ -21,13 +21,15 @@ export default function App() {
   const handleCloseAuth = () => setAuthModalOpen(false);
 
   const renderPage = () => {
-    if (currentPath === '/' || currentPath === '') {
-    return (
-  <div style={{ background: "black", color: "white", height: "100vh" }}>
-    APP TEST
-  </div>
-);
-    }
+   if (currentPath === '/' || currentPath === '') {
+  return (
+    <Home
+      onNavigate={navigate}
+      onOpenAuth={handleOpenAuth}
+      isLoggedIn={!!user}
+    />
+  );
+}
 
     if (currentPath.startsWith('/coches')) {
       return (

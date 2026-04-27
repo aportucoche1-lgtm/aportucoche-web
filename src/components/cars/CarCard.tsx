@@ -1,4 +1,3 @@
-```tsx
 import { ExternalLink, Fuel, Gauge, Heart, MapPin } from 'lucide-react';
 import { Car, AIValuation } from '../../types';
 
@@ -41,4 +40,3 @@ export function CarCard({
     </div>
   );
 }
-```

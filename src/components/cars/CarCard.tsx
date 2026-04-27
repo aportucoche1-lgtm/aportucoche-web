@@ -1,3 +1,5 @@
+```tsx
+import { ExternalLink, Fuel, Gauge, Heart, MapPin } from 'lucide-react';
 import { Car, AIValuation } from '../../types';
 
 interface CarCardProps {
@@ -9,11 +11,34 @@ interface CarCardProps {
   onAuthRequired: () => void;
 }
 
-export function CarCard({ car }: CarCardProps) {
+export function CarCard({
+  car,
+  valuation,
+  isFavorite,
+  onToggleFavorite,
+  isLoggedIn,
+  onAuthRequired
+}: CarCardProps) {
   return (
-    <div style={{ background: "blue", height: "300px", marginBottom: "20px", color: "white", padding: "20px" }}>
-      TARJETA VISIBLE<br />
-      {car.brand} {car.model}
+    <div className="bg-white rounded-2xl overflow-hidden shadow">
+      <div className="relative bg-gray-100">
+        <img
+          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200"
+          alt="Coche"
+          className="w-full h-[220px] object-cover"
+        />
+      </div>
+
+      <div className="p-4">
+        <h3 className="font-bold text-lg">
+          {car.brand} {car.model}
+        </h3>
+
+        <p className="text-gray-600">
+          {car.price?.toLocaleString('es-ES')} €
+        </p>
+      </div>
     </div>
   );
 }
+```

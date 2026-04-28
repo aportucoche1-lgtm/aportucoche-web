@@ -14,7 +14,9 @@ import { SearchResults } from './pages/SearchResults';
 
 export default function App() {
   const { currentPath, navigate, searchParams } = useRouter();
-  const { user, profile, loading } = useAuth();
+  const user = null;
+const profile = null;
+const loading = false;
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
   const handleOpenAuth = () => setAuthModalOpen(true);

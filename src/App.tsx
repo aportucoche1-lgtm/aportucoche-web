@@ -125,11 +125,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+    {/* 
       <Header
         onNavigate={navigate}
         currentPath={currentPath}
         onOpenAuth={handleOpenAuth}
       />
+*/}
 
       <main className="flex-1">
         {loading ? (
@@ -141,7 +143,7 @@ export default function App() {
         )}
       </main>
 
-      <Footer onNavigate={navigate} />
+     {/* <Footer onNavigate={navigate} /> */}
 
       {authModalOpen && (
         <AuthModal onClose={handleCloseAuth} />

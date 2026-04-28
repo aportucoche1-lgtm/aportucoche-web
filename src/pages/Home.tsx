@@ -54,11 +54,7 @@ export function Home({ onNavigate, onOpenAuth, isLoggedIn }: HomeProps) {
     onNavigate('/coches', query);
   };
 
-  const featuredChollos = MOCK_CARS.filter((car) => {
-    const val = calculateAIValuation(car);
-    return val.rating === 'chollo_excelente' || val.rating === 'buen_precio';
-  }).slice(0, 3);
-
+  const featuredChollos = [];
   const stats = [
     { value: '50.000+', label: 'Anuncios activos' },
     { value: '5', label: 'Plataformas' },

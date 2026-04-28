@@ -17,7 +17,8 @@ export default function App() {
   const user = null;
 const profile = null;
 const loading = false;
-  const [authModalOpen, setAuthModalOpen] = useState(false);
+ const [authModalOpen, setAuthModalOpen] = useState(false);
+console.log("authModalOpen:", authModalOpen);
 
   const handleOpenAuth = () => setAuthModalOpen(true);
   const handleCloseAuth = () => setAuthModalOpen(false);
@@ -146,10 +147,11 @@ const loading = false;
       </main>
 
      {/* <Footer onNavigate={navigate} /> */}
-
+{/*
       {authModalOpen && (
         <AuthModal onClose={handleCloseAuth} />
       )}
     </div>
   );
 }
+*/}

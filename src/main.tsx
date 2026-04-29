@@ -1,13 +1,10 @@
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
 
-document.body.innerHTML = `
-  <div style="
-    background:white;
-    color:black;
-    font-size:40px;
-    padding:40px;
-    min-height:100vh;
-  ">
-    MAIN TSX FUNCIONANDO
-  </div>
-`;
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

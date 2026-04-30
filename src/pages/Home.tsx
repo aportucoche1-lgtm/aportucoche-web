@@ -34,7 +34,7 @@ export function Home({ onNavigate }: HomeProps) {
           Encuentra tu coche ideal
         </h1>
 
-      <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+     <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
   Buscamos entre miles de anuncios y detectamos automáticamente los mejores precios con inteligencia artificial.
 </p>
 
@@ -121,7 +121,6 @@ export function Home({ onNavigate }: HomeProps) {
     ))}
   </div>
 </div>
-
       {/* CHOLLOS */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <h2 className="text-3xl font-black mb-6 text-gray-900">

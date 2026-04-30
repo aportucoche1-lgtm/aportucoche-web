@@ -18,113 +18,80 @@ export function Home({ onNavigate }: HomeProps) {
   };
 
   const featured = MOCK_CARS
-    .map(car => ({
+    .map((car) => ({
       ...car,
-      valuation: calculateAIValuation(car)
+      valuation: calculateAIValuation(car),
     }))
-    .filter(c => c.valuation.rating === 'chollo_excelente' || c.valuation.rating === 'buen_precio')
     .slice(0, 6);
 
   return (
     <div className="min-h-screen bg-gray-50">
 
-      {/* HERO */}
       <section className="bg-white py-20 px-6 text-center">
         <h1 className="text-5xl font-black mb-4 text-gray-900">
           Encuentra tu coche ideal
         </h1>
 
-     <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-  Buscamos entre miles de anuncios y detectamos automáticamente los mejores precios con inteligencia artificial.
-</p>
+        <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+          Buscamos entre miles de anuncios y detectamos los mejores precios.
+        </p>
 
-<div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6">
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-    <input
-      placeholder="Marca"
-      value={brand}
-      onChange={(e) => setBrand(e.target.value)}
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+            <input
+              placeholder="Marca"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+              className="border px-4 py-3 rounded-xl w-full"
+            />
 
-    <input
-      placeholder="Modelo"
-      value={model}
-      onChange={(e) => setModel(e.target.value)}
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+            <input
+              placeholder="Modelo"
+              value={model}
+              onChange={(e) => setModel(e.target.value)}
+              className="border px-4 py-3 rounded-xl w-full"
+            />
 
-    <input
-      placeholder="Versión / Variante"
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+            <input
+              placeholder="Versión / Variante"
+              className="border px-4 py-3 rounded-xl w-full"
+            />
 
-    <select className="border px-4 py-3 rounded-xl w-full">
-      <option>Combustible</option>
-      <option>Gasolina</option>
-      <option>Diésel</option>
-      <option>Híbrido</option>
-      <option>Eléctrico</option>
-    </select>
+            <select className="border px-4 py-3 rounded-xl w-full">
+              <option>Combustible</option>
+              <option>Gasolina</option>
+              <option>Diésel</option>
+              <option>Híbrido</option>
+              <option>Eléctrico</option>
+            </select>
 
-    <input
-      placeholder="Ubicación"
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+            <input
+              placeholder="Ubicación"
+              className="border px-4 py-3 rounded-xl w-full"
+            />
 
-    <input
-      placeholder="Precio máximo"
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+            <input
+              placeholder="Precio máximo"
+              className="border px-4 py-3 rounded-xl w-full"
+            />
 
-    <input
-      placeholder="Año mínimo"
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+          </div>
 
-    <input
-      placeholder="Kilómetros máximos"
-      className="border px-4 py-3 rounded-xl w-full"
-    />
+          <div className="mt-6">
+            <button
+              onClick={handleSearch}
+              className="w-full bg-black text-white py-4 rounded-xl font-bold text-lg"
+            >
+              BUSCAR CHOLLOS
+            </button>
+          </div>
+        </div>
+      </section>
 
-    <select className="border px-4 py-3 rounded-xl w-full">
-      <option>Cambio</option>
-      <option>Manual</option>
-      <option>Automático</option>
-    </select>
-  </div>
-
-  <div className="mt-6">
-    <button
-      onClick={handleSearch}
-      className="w-full bg-black text-white py-4 rounded-xl font-bold text-lg"
-    >
-      BUSCAR CHOLLOS
-    </button>
-  </div>
-
-  <div className="flex flex-wrap gap-2 mt-4 justify-center">
-    {[
-      { label: 'SUV', query: { bodyType: 'suv' } },
-      { label: 'Diésel', query: { fuel: 'diesel' } },
-      { label: 'Madrid', query: { province: 'Madrid' } },
-      { label: 'Baratos', query: { maxPrice: '10000' } },
-    ].map((item) => (
-      <button
-        key={item.label}
-        onClick={() => onNavigate('/coches', item.query)}
-        className="text-sm px-3 py-1.5 bg-gray-100 rounded-full hover:bg-black hover:text-white transition"
-      >
-        {item.label}
-      </button>
-    ))}
-  </div>
-</div>
-      {/* CHOLLOS */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-black mb-6 text-gray-900">
-          🔥 Mejores chollos ahora
+        <h2 className="text-3xl font-black mb-6">
+          Mejores coches destacados
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -140,65 +107,6 @@ export function Home({ onNavigate }: HomeProps) {
             />
           ))}
         </div>
-
-        <div className="text-center mt-10">
-          <button
-            onClick={() => onNavigate('/coches')}
-            className="bg-black text-white px-8 py-3 rounded-xl font-semibold"
-          >
-            Ver todos los coches
-          </button>
-        </div>
-      </section>
-
-      {/* FEATURES */}
-      <section className="bg-white py-16 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-black mb-10">
-            ¿Por qué usar AportuCoche?
-          </h2>
-
-          <div className="grid sm:grid-cols-3 gap-8 text-left">
-            <div>
-              <h3 className="font-bold text-lg mb-2">⚡ Valoración IA</h3>
-              <p className="text-gray-600 text-sm">
-                Analizamos miles de precios para saber si es un chollo o no.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-2">🔎 Multi-plataforma</h3>
-              <p className="text-gray-600 text-sm">
-                Buscamos en Wallapop, Milanuncios, Coches.net y más.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-2">🔔 Alertas</h3>
-              <p className="text-gray-600 text-sm">
-                Recibe avisos cuando aparezca el coche perfecto.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-black text-white py-16 px-6 text-center">
-        <h2 className="text-3xl font-black mb-4">
-          No vuelvas a pagar de más por un coche
-        </h2>
-
-        <p className="mb-6 text-gray-300">
-          Empieza a encontrar chollos ahora mismo.
-        </p>
-
-        <button
-          onClick={() => onNavigate('/coches')}
-          className="bg-white text-black px-8 py-3 rounded-xl font-bold"
-        >
-          Buscar coches
-        </button>
       </section>
 
     </div>

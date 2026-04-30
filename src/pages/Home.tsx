@@ -34,11 +34,11 @@ export function Home({ onNavigate }: HomeProps) {
           Encuentra tu coche ideal
         </h1>
 
-        <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-          Buscamos entre miles de anuncios y detectamos automáticamente los mejores precios con inteligencia artificial.
-        </p>
+      <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+  Buscamos entre miles de anuncios y detectamos automáticamente los mejores precios con inteligencia artificial.
+</p>
 
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6">
+<div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6">
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
     <input
@@ -103,26 +103,24 @@ export function Home({ onNavigate }: HomeProps) {
       BUSCAR CHOLLOS
     </button>
   </div>
+
+  <div className="flex flex-wrap gap-2 mt-4 justify-center">
+    {[
+      { label: 'SUV', query: { bodyType: 'suv' } },
+      { label: 'Diésel', query: { fuel: 'diesel' } },
+      { label: 'Madrid', query: { province: 'Madrid' } },
+      { label: 'Baratos', query: { maxPrice: '10000' } },
+    ].map((item) => (
+      <button
+        key={item.label}
+        onClick={() => onNavigate('/coches', item.query)}
+        className="text-sm px-3 py-1.5 bg-gray-100 rounded-full hover:bg-black hover:text-white transition"
+      >
+        {item.label}
+      </button>
+    ))}
+  </div>
 </div>
-          {/* QUICK SEARCH */}
-          <div className="flex flex-wrap gap-2 mt-4 justify-center">
-            {[
-              { label: 'SUV', query: { bodyType: 'suv' } },
-              { label: 'Diésel', query: { fuel: 'diesel' } },
-              { label: 'Madrid', query: { province: 'Madrid' } },
-              { label: 'Baratos', query: { maxPrice: '10000' } },
-            ].map((item) => (
-              <button
-                key={item.label}
-                onClick={() => onNavigate('/coches', item.query)}
-                className="text-sm px-3 py-1.5 bg-gray-100 rounded-full hover:bg-black hover:text-white transition"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CHOLLOS */}
       <section className="py-16 px-6 max-w-6xl mx-auto">

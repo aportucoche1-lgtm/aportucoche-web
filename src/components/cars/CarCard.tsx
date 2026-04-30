@@ -1,5 +1,5 @@
 import { Car, AIValuation } from '../../types';
-import { getCarImage } from '../utils/getCarImage';
+import { getCarImage } from '../../utils/getCarImage';
 
 interface CarCardProps {
   car: Car;

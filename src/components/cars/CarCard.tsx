@@ -1,5 +1,4 @@
 import { Car, AIValuation } from '../../types';
-import { getCarImage } from '../../utils/getCarImage';
 
 interface CarCardProps {
   car: Car;
@@ -13,11 +12,11 @@ interface CarCardProps {
 export function CarCard({ car }: CarCardProps) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow">
-      <img
-        src={getCarImage(car.brand, car.model)}
-        alt={`${car.brand} ${car.model}`}
-        className="w-full h-[220px] object-cover"
-      />
+    <img
+  src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200"
+  alt={`${car.brand} ${car.model}`}
+  className="w-full h-[220px] object-cover"
+/>
 
       <div className="p-4">
         <h3 className="font-bold text-lg">

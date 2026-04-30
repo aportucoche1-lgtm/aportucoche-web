@@ -1,4 +1,3 @@
-import { ExternalLink, Fuel, Gauge, Heart, MapPin } from 'lucide-react';
 import { Car, AIValuation } from '../../types';
 import { getCarImage } from '../utils/getCarImage';
 
@@ -11,27 +10,14 @@ interface CarCardProps {
   onAuthRequired: () => void;
 }
 
-export function CarCard({
-  car,
-  valuation,
-  isFavorite,
-  onToggleFavorite,
-  isLoggedIn,
-  onAuthRequired
-}: CarCardProps) {
+export function CarCard({ car }: CarCardProps) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow">
-      <div className="relative bg-gray-100">
-        <img
-          src={getCarImage(car.brand, car.model)}
-          alt={`${car.brand} ${car.model}`}
-          className="w-full h-[220px] object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200";
-          }}
-        />
-      </div>
+      <img
+        src={getCarImage(car.brand, car.model)}
+        alt={`${car.brand} ${car.model}`}
+        className="w-full h-[220px] object-cover"
+      />
 
       <div className="p-4">
         <h3 className="font-bold text-lg">

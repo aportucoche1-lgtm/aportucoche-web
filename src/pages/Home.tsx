@@ -38,31 +38,72 @@ export function Home({ onNavigate }: HomeProps) {
           Buscamos entre miles de anuncios y detectamos automáticamente los mejores precios con inteligencia artificial.
         </p>
 
-        {/* BUSCADOR */}
-        <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-6">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <input
-              placeholder="Marca (BMW, Audi...)"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-              className="border px-4 py-3 rounded-xl w-full"
-            />
+      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-            <input
-              placeholder="Modelo (X5, A4...)"
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-              className="border px-4 py-3 rounded-xl w-full"
-            />
+    <input
+      placeholder="Marca"
+      value={brand}
+      onChange={(e) => setBrand(e.target.value)}
+      className="border px-4 py-3 rounded-xl w-full"
+    />
 
-            <button
-              onClick={handleSearch}
-              className="bg-black text-white px-6 py-3 rounded-xl font-semibold"
-            >
-              Buscar
-            </button>
-          </div>
+    <input
+      placeholder="Modelo"
+      value={model}
+      onChange={(e) => setModel(e.target.value)}
+      className="border px-4 py-3 rounded-xl w-full"
+    />
 
+    <input
+      placeholder="Versión / Variante"
+      className="border px-4 py-3 rounded-xl w-full"
+    />
+
+    <select className="border px-4 py-3 rounded-xl w-full">
+      <option>Combustible</option>
+      <option>Gasolina</option>
+      <option>Diésel</option>
+      <option>Híbrido</option>
+      <option>Eléctrico</option>
+    </select>
+
+    <input
+      placeholder="Ubicación"
+      className="border px-4 py-3 rounded-xl w-full"
+    />
+
+    <input
+      placeholder="Precio máximo"
+      className="border px-4 py-3 rounded-xl w-full"
+    />
+
+    <input
+      placeholder="Año mínimo"
+      className="border px-4 py-3 rounded-xl w-full"
+    />
+
+    <input
+      placeholder="Kilómetros máximos"
+      className="border px-4 py-3 rounded-xl w-full"
+    />
+
+    <select className="border px-4 py-3 rounded-xl w-full">
+      <option>Cambio</option>
+      <option>Manual</option>
+      <option>Automático</option>
+    </select>
+  </div>
+
+  <div className="mt-6">
+    <button
+      onClick={handleSearch}
+      className="w-full bg-black text-white py-4 rounded-xl font-bold text-lg"
+    >
+      BUSCAR CHOLLOS
+    </button>
+  </div>
+</div>
           {/* QUICK SEARCH */}
           <div className="flex flex-wrap gap-2 mt-4 justify-center">
             {[

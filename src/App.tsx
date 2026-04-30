@@ -1,4 +1,4 @@
-console.log("APP FUNCIONANDO");
+console.log("APP FUNCIONANDO OK");
 
 import { useState } from 'react';
 import { AuthModal } from './components/auth/AuthModal';

@@ -9,7 +9,7 @@ interface HomeProps {
   isLoggedIn: boolean;
 }
 
-const PLATFORMS = [
+const platforms = [
   'Wallapop',
   'Milanuncios',
   'Coches.net',
@@ -17,12 +17,25 @@ const PLATFORMS = [
   'Facebook Marketplace',
 ];
 
+const quickFilters = [
+  { label: 'SUV', query: { bodyType: 'suv' } },
+  { label: 'SUV Diésel', query: { bodyType: 'suv', fuel: 'diesel' } },
+  { label: 'Híbrido', query: { fuel: 'hybrid' } },
+  { label: 'Chollo Madrid', query: { province: 'Madrid' } },
+];
+
 export function Home({ onNavigate }: HomeProps) {
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [fuel, setFuel] = useState('');
   const [province, setProvince] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+
+  const featuredCars = MOCK_CARS
+    .map((car) => ({
+      ...car,
+      valuation: calculateAIValuation(car),
+    }))
+    .slice(0, 3);
 
   const handleSearch = () => {
     onNavigate('/coches', {
@@ -30,105 +43,132 @@ export function Home({ onNavigate }: HomeProps) {
       model,
       fuel,
       province,
-      maxPrice,
     });
   };
 
-  const featured = MOCK_CARS
-    .map((car) => ({
-      ...car,
-      valuation: calculateAIValuation(car),
-    }))
-    .slice(0, 6);
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#F7F8FA]">
 
       {/* HERO */}
-      <section className="bg-white pt-20 pb-16 px-6">
+      <section className="pt-20 pb-14 px-6">
         <div className="max-w-6xl mx-auto text-center">
 
-          <h1 className="text-5xl font-black text-gray-900 mb-4">
-            El Skyscanner de los coches de segunda mano
-          </h1>
-
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-10">
-            Buscamos entre miles de anuncios reales de múltiples plataformas,
-            detectamos chollos con inteligencia artificial y te llevamos
-            directamente al anuncio original.
-          </p>
-
-          {/* Plataformas */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {PLATFORMS.map((platform) => (
-              <div
-                key={platform}
-                className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700"
-              >
-                {platform}
-              </div>
-            ))}
+          <div className="inline-flex px-4 py-1 rounded-full bg-green-50 border border-green-200 text-sm font-medium text-green-700 mb-6">
+            + 2.400 chollos detectados hoy
           </div>
 
-          {/* Buscador PRO */}
-          <div className="bg-white rounded-2xl shadow-xl p-6 max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-black text-[#13233A] leading-tight">
+            Encuentra tu coche ideal
+            <br />
+            <span className="text-green-500">
+              al mejor precio
+            </span>
+          </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <p className="text-gray-600 max-w-3xl mx-auto mt-6 mb-10 text-lg">
+            Comparamos coches de segunda mano de las principales plataformas
+            de España y detectamos chollos con inteligencia artificial.
+          </p>
 
-              <input
-                placeholder="Marca"
+          {/* SEARCH BOX */}
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+              <select
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
-                className="border rounded-xl px-4 py-3 w-full"
-              />
+                className="border border-gray-200 rounded-xl px-4 py-3"
+              >
+                <option value="">Marca</option>
+                <option>BMW</option>
+                <option>Audi</option>
+                <option>Mercedes</option>
+                <option>Volkswagen</option>
+                <option>Toyota</option>
+                <option>Seat</option>
+              </select>
 
               <input
-                placeholder="Modelo"
+                placeholder="Modelo (elige marca)"
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
-                className="border rounded-xl px-4 py-3 w-full"
-              />
-
-              <input
-                placeholder="Versión / Variante"
-                className="border rounded-xl px-4 py-3 w-full"
+                className="border border-gray-200 rounded-xl px-4 py-3"
               />
 
               <select
                 value={fuel}
                 onChange={(e) => setFuel(e.target.value)}
-                className="border rounded-xl px-4 py-3 w-full"
+                className="border border-gray-200 rounded-xl px-4 py-3"
               >
                 <option value="">Combustible</option>
                 <option value="gasolina">Gasolina</option>
                 <option value="diesel">Diésel</option>
-                <option value="hibrido">Híbrido</option>
-                <option value="electrico">Eléctrico</option>
+                <option value="hybrid">Híbrido</option>
+                <option value="electric">Eléctrico</option>
               </select>
 
               <input
-                placeholder="Provincia / Ubicación"
+                placeholder="Provincia"
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
-                className="border rounded-xl px-4 py-3 w-full"
+                className="border border-gray-200 rounded-xl px-4 py-3 md:col-span-2"
               />
 
-              <input
-                placeholder="Precio máximo"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-                className="border rounded-xl px-4 py-3 w-full"
-              />
+              <button
+                onClick={handleSearch}
+                className="bg-[#13233A] text-white rounded-xl font-bold px-6 py-3 hover:opacity-95 transition"
+              >
+                Buscar coches
+              </button>
             </div>
 
-            <button
-              onClick={handleSearch}
-              className="w-full mt-6 bg-black text-white py-4 rounded-xl font-bold text-lg"
-            >
-              BUSCAR CHOLLOS
-            </button>
-
+            {/* QUICK FILTERS */}
+            <div className="flex flex-wrap gap-2 justify-center mt-5">
+              {quickFilters.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => onNavigate('/coches', item.query)}
+                  className="px-3 py-1.5 text-sm rounded-full bg-gray-100 hover:bg-gray-200 transition"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* STATS */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mt-12">
+            <div>
+              <div className="text-3xl font-black text-[#13233A]">50.000+</div>
+              <div className="text-sm text-gray-500">Anuncios activos</div>
+            </div>
+
+            <div>
+              <div className="text-3xl font-black text-[#13233A]">5</div>
+              <div className="text-sm text-gray-500">Plataformas</div>
+            </div>
+
+            <div>
+              <div className="text-3xl font-black text-[#13233A]">2.400+</div>
+              <div className="text-sm text-gray-500">Chollos hoy</div>
+            </div>
+
+            <div>
+              <div className="text-3xl font-black text-[#13233A]">100%</div>
+              <div className="text-sm text-gray-500">Gratis</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PLATFORMS */}
+      <section className="border-y bg-white py-5 px-6">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 text-sm text-gray-500 font-medium">
+          <span>ANUNCIOS DE:</span>
+          {platforms.map((platform) => (
+            <span key={platform}>{platform}</span>
+          ))}
         </div>
       </section>
 
@@ -136,16 +176,26 @@ export function Home({ onNavigate }: HomeProps) {
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
 
-          <h2 className="text-3xl font-black mb-2">
-            🔥 Chollos destacados
-          </h2>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <p className="text-sm font-bold text-orange-500 uppercase">
+                Chollos destacados
+              </p>
+              <h2 className="text-3xl font-black text-[#13233A]">
+                Los mejores precios ahora mismo
+              </h2>
+            </div>
 
-          <p className="text-gray-600 mb-8">
-            Vehículos detectados con mejor relación calidad-precio
-          </p>
+            <button
+              onClick={() => onNavigate('/coches')}
+              className="text-sm font-semibold"
+            >
+              Ver todos →
+            </button>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featured.map((car) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredCars.map((car) => (
               <CarCard
                 key={car.id}
                 car={car}
@@ -161,7 +211,7 @@ export function Home({ onNavigate }: HomeProps) {
           <div className="text-center mt-10">
             <button
               onClick={() => onNavigate('/coches')}
-              className="bg-black text-white px-8 py-3 rounded-xl font-semibold"
+              className="bg-[#13233A] text-white px-8 py-3 rounded-xl font-bold"
             >
               Ver todos los coches
             </button>
@@ -169,43 +219,45 @@ export function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      {/* Cómo funciona */}
-      <section className="bg-white py-16 px-6">
-        <div className="max-w-5xl mx-auto">
+      {/* HOW IT WORKS */}
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-5xl mx-auto text-center">
 
-          <h2 className="text-3xl font-black text-center mb-12">
+          <h2 className="text-3xl font-black text-[#13233A] mb-3">
             ¿Cómo funciona?
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <p className="text-gray-500 mb-10">
+            Tecnología de inteligencia artificial para que nunca pagues de más
+          </p>
 
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                1. Buscamos por ti
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Analizamos anuncios reales en Wallapop, Coches.net,
-                Milanuncios, AutoScout24 y más.
+          <div className="grid md:grid-cols-4 gap-6 text-left">
+
+            <div className="bg-gray-50 rounded-2xl p-6">
+              <h3 className="font-bold mb-2">Valoración IA</h3>
+              <p className="text-sm text-gray-600">
+                Analizamos miles de precios para detectar si un coche es un chollo.
               </p>
             </div>
 
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                2. Detectamos chollos
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Nuestra IA compara precios de mercado y detecta
-                automáticamente oportunidades reales.
+            <div className="bg-gray-50 rounded-2xl p-6">
+              <h3 className="font-bold mb-2">5 plataformas</h3>
+              <p className="text-sm text-gray-600">
+                Wallapop, Milanuncios, Coches.net y más.
               </p>
             </div>
 
-            <div>
-              <h3 className="font-bold text-lg mb-2">
-                3. Vas al anuncio original
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Siempre compras directamente en la plataforma original,
-                con total transparencia.
+            <div className="bg-gray-50 rounded-2xl p-6">
+              <h3 className="font-bold mb-2">Alertas</h3>
+              <p className="text-sm text-gray-600">
+                Recibe avisos cuando aparezca el coche ideal.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-6">
+              <h3 className="font-bold mb-2">Acceso directo</h3>
+              <p className="text-sm text-gray-600">
+                Siempre te llevamos al anuncio original.
               </p>
             </div>
 
@@ -213,21 +265,41 @@ export function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      {/* LEGAL */}
-      <section className="bg-black text-white py-14 px-6">
+      {/* LEGAL + CTA */}
+      <section className="bg-[#13233A] text-white py-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
 
-          <h2 className="text-2xl font-bold mb-4">
-            Transparencia total
+          <h2 className="text-4xl font-black mb-4">
+            Regístrate gratis y recibe alertas de chollos
           </h2>
 
-          <p className="text-gray-300 max-w-3xl mx-auto text-sm leading-relaxed">
-            AportuCoche no vende vehículos directamente. Actuamos como
-            comparador de anuncios de terceros. La compra se realiza siempre
-            en la plataforma original del anuncio. Los precios, disponibilidad
-            e imágenes pueden variar según la plataforma de origen.
+          <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+            Guarda búsquedas, marca favoritos y recibe notificaciones
+            cuando aparezca el coche que buscas.
           </p>
 
+          <div className="flex flex-wrap gap-4 justify-center mb-10">
+            <button
+              onClick={onOpenAuth}
+              className="bg-green-500 text-white px-8 py-3 rounded-xl font-bold"
+            >
+              Crear cuenta gratis
+            </button>
+
+            <button
+              onClick={() => onNavigate('/coches')}
+              className="border border-white/30 px-8 py-3 rounded-xl font-semibold"
+            >
+              Ver coches sin registrarme
+            </button>
+          </div>
+
+          <p className="text-sm text-gray-400 max-w-3xl mx-auto">
+            AportuCoche no vende vehículos directamente.
+            Actuamos como comparador de anuncios de terceros.
+            La compra se realiza siempre en la plataforma original del anuncio.
+            Los precios, disponibilidad e imágenes pueden variar según la plataforma de origen.
+          </p>
         </div>
       </section>
 

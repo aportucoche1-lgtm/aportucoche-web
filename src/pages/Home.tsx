@@ -24,7 +24,7 @@ const quickFilters = [
   { label: 'Chollo Madrid', query: { province: 'Madrid' } },
 ];
 
-export function Home({ onNavigate }: HomeProps) {
+export function Home({ onNavigate, onOpenAuth }: HomeProps) {
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [fuel, setFuel] = useState('');

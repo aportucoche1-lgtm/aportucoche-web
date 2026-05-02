@@ -18,11 +18,21 @@ const platforms = [
 ];
 
 const quickFilters = [
-  { label: 'SUV', query: { bodyType: 'suv' } },
-  { label: 'SUV Diésel', query: { bodyType: 'suv', fuel: 'diesel' } },
-  { label: 'Híbrido', query: { fuel: 'hybrid' } },
-  { label: 'Chollo Madrid', query: { province: 'Madrid' } },
-];
+const MODELS_BY_BRAND: Record<string, string[]> = {
+  BMW: ["Serie 1", "Serie 2", "Serie 3", "Serie 4", "Serie 5", "X1", "X3", "X5", "X6"],
+  Audi: ["A1", "A3", "A4", "A5", "A6", "Q2", "Q3", "Q5", "Q7"],
+  "Mercedes-Benz": ["Clase A", "Clase B", "Clase C", "Clase E", "GLA", "GLC", "GLE"],
+  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan", "T-Roc", "Touareg"],
+  SEAT: ["Ibiza", "León", "Arona", "Ateca", "Tarraco"],
+  Cupra: ["León", "Formentor", "Born", "Ateca"],
+  Toyota: ["Yaris", "Corolla", "C-HR", "RAV4", "Hilux"],
+  Peugeot: ["208", "308", "2008", "3008", "5008"],
+  Renault: ["Clio", "Megane", "Captur", "Austral", "Kadjar"],
+  Ford: ["Fiesta", "Focus", "Kuga", "Puma", "Mondeo"],
+  Hyundai: ["i20", "i30", "Tucson", "Kona", "Santa Fe"],
+  Kia: ["Rio", "Ceed", "Sportage", "Niro", "Sorento"],
+  Tesla: ["Model 3", "Model S", "Model X", "Model Y"],
+};
 
 export function Home({ onNavigate, onOpenAuth }: HomeProps) {
   const [brand, setBrand] = useState('');
@@ -127,6 +137,16 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
   className="border border-gray-200 rounded-xl px-4 py-3"
   disabled={!brand}
 >
+  <option value="">
+    {brand ? "Seleccionar modelo" : "Primero elige marca"}
+  </option>
+
+  {(MODELS_BY_BRAND[brand] || []).map((m) => (
+    <option key={m} value={m}>
+      {m}
+    </option>
+  ))}
+</select>
   <option value="">
     {brand ? "Seleccionar modelo" : "Primero elige marca"}
   </option>

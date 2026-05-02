@@ -3,9 +3,9 @@ const getCarImage = (brand?: string, model?: string) => {
   const fallback =
     "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200";
 
-  if (!brand && !model) return fallback;
+  if (!brand) return fallback;
 
-  const query = `${brand || ""} ${model || ""} official car`;
+  const query = `${brand} ${model || ""} car exterior`;
 
   return `https://source.unsplash.com/featured/800x600/?${encodeURIComponent(query)}`;
 };

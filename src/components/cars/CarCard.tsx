@@ -1,3 +1,4 @@
+import { getCarImage } from '../../utils/getCarImage';
 import { Car, AIValuation } from '../../types';
 const getCarImage = (brand?: string, model?: string) => {
   const fallback =

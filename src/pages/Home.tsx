@@ -18,20 +18,141 @@ const platforms = [
 ];
 
 const quickFilters = [
+  { label: 'SUV', query: { bodyType: 'suv' } },
+  { label: 'SUV Diésel', query: { bodyType: 'suv', fuel: 'diesel' } },
+  { label: 'Híbrido', query: { fuel: 'hybrid' } },
+  { label: 'Chollo Madrid', query: { province: 'Madrid' } },
+];
+
+const BRANDS = [
+  'Audi',
+  'BMW',
+  'Mercedes-Benz',
+  'Volkswagen',
+  'SEAT',
+  'Cupra',
+  'Toyota',
+  'Peugeot',
+  'Renault',
+  'Ford',
+  'Hyundai',
+  'Kia',
+  'Tesla',
+];
+
 const MODELS_BY_BRAND: Record<string, string[]> = {
-  BMW: ["Serie 1", "Serie 2", "Serie 3", "Serie 4", "Serie 5", "X1", "X3", "X5", "X6"],
-  Audi: ["A1", "A3", "A4", "A5", "A6", "Q2", "Q3", "Q5", "Q7"],
-  "Mercedes-Benz": ["Clase A", "Clase B", "Clase C", "Clase E", "GLA", "GLC", "GLE"],
-  Volkswagen: ["Golf", "Polo", "Passat", "Tiguan", "T-Roc", "Touareg"],
-  SEAT: ["Ibiza", "León", "Arona", "Ateca", "Tarraco"],
-  Cupra: ["León", "Formentor", "Born", "Ateca"],
-  Toyota: ["Yaris", "Corolla", "C-HR", "RAV4", "Hilux"],
-  Peugeot: ["208", "308", "2008", "3008", "5008"],
-  Renault: ["Clio", "Megane", "Captur", "Austral", "Kadjar"],
-  Ford: ["Fiesta", "Focus", "Kuga", "Puma", "Mondeo"],
-  Hyundai: ["i20", "i30", "Tucson", "Kona", "Santa Fe"],
-  Kia: ["Rio", "Ceed", "Sportage", "Niro", "Sorento"],
-  Tesla: ["Model 3", "Model S", "Model X", "Model Y"],
+  BMW: [
+    'Serie 1',
+    'Serie 2',
+    'Serie 3',
+    'Serie 4',
+    'Serie 5',
+    'X1',
+    'X3',
+    'X5',
+    'X6',
+  ],
+
+  Audi: [
+    'A1',
+    'A3',
+    'A4',
+    'A5',
+    'A6',
+    'Q2',
+    'Q3',
+    'Q5',
+    'Q7',
+  ],
+
+  'Mercedes-Benz': [
+    'Clase A',
+    'Clase B',
+    'Clase C',
+    'Clase E',
+    'GLA',
+    'GLC',
+    'GLE',
+  ],
+
+  Volkswagen: [
+    'Golf',
+    'Polo',
+    'Passat',
+    'Tiguan',
+    'T-Roc',
+    'Touareg',
+  ],
+
+  SEAT: [
+    'Ibiza',
+    'León',
+    'Arona',
+    'Ateca',
+    'Tarraco',
+  ],
+
+  Cupra: [
+    'León',
+    'Formentor',
+    'Born',
+    'Ateca',
+  ],
+
+  Toyota: [
+    'Yaris',
+    'Corolla',
+    'C-HR',
+    'RAV4',
+    'Hilux',
+  ],
+
+  Peugeot: [
+    '208',
+    '308',
+    '2008',
+    '3008',
+    '5008',
+  ],
+
+  Renault: [
+    'Clio',
+    'Megane',
+    'Captur',
+    'Austral',
+    'Kadjar',
+  ],
+
+  Ford: [
+    'Fiesta',
+    'Focus',
+    'Kuga',
+    'Puma',
+    'Mondeo',
+  ],
+
+  Hyundai: [
+    'i20',
+    'i30',
+    'Tucson',
+    'Kona',
+    'Santa Fe',
+  ],
+
+  Kia: [
+    'Rio',
+    'Ceed',
+    'Sportage',
+    'Niro',
+    'Sorento',
+  ],
+
+  Tesla: [
+    'Model 3',
+    'Model S',
+    'Model X',
+    'Model Y',
+  ],
 };
 
 export function Home({ onNavigate, onOpenAuth }: HomeProps) {
@@ -58,7 +179,6 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
 
   return (
     <div className="min-h-screen bg-[#F7F8FA]">
-
       {/* HERO */}
       <section className="pt-20 pb-14 px-6">
         <div className="max-w-6xl mx-auto text-center">
@@ -82,96 +202,41 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
 
           {/* SEARCH BOX */}
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-           <select
-  value={brand}
-  onChange={(e) => {
-    setBrand(e.target.value);
-    setModel('');
-  }}
-  className="border border-gray-200 rounded-xl px-4 py-3"
->
-  <option value="">Seleccionar marca</option>
+              <select
+                value={brand}
+                onChange={(e) => {
+                  setBrand(e.target.value);
+                  setModel('');
+                }}
+                className="border border-gray-200 rounded-xl px-4 py-3"
+              >
+                <option value="">Seleccionar marca</option>
 
-  {[
-    "Audi",
-    "BMW",
-    "Mercedes-Benz",
-    "Volkswagen",
-    "SEAT",
-    "Cupra",
-    "Toyota",
-    "Lexus",
-    "Porsche",
-    "Peugeot",
-    "Renault",
-    "Citroen",
-    "Opel",
-    "Ford",
-    "Hyundai",
-    "Kia",
-    "Mazda",
-    "Volvo",
-    "Tesla",
-    "Nissan",
-    "Honda",
-    "Skoda",
-    "Fiat",
-    "Jeep",
-    "Land Rover",
-    "Jaguar",
-    "Mini",
-    "Alfa Romeo"
-  ].map((item) => (
-    <option key={item} value={item}>
-      {item}
-    </option>
-  ))}
-</select>
+                {BRANDS.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
 
-<select
-  value={model}
-  onChange={(e) => setModel(e.target.value)}
-  className="border border-gray-200 rounded-xl px-4 py-3"
-  disabled={!brand}
->
-  <option value="">
-    {brand ? "Seleccionar modelo" : "Primero elige marca"}
-  </option>
+              <select
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+                className="border border-gray-200 rounded-xl px-4 py-3"
+                disabled={!brand}
+              >
+                <option value="">
+                  {brand ? 'Seleccionar modelo' : 'Primero elige marca'}
+                </option>
 
-  {(MODELS_BY_BRAND[brand] || []).map((m) => (
-    <option key={m} value={m}>
-      {m}
-    </option>
-  ))}
-</select>
-  <option value="">
-    {brand ? "Seleccionar modelo" : "Primero elige marca"}
-  </option>
-
-  {brand === "BMW" &&
-    ["Serie 1", "Serie 3", "Serie 5", "X1", "X3", "X5"].map((m) => (
-      <option key={m} value={m}>
-        {m}
-      </option>
-    ))}
-
-  {brand === "Audi" &&
-    ["A1", "A3", "A4", "A6", "Q3", "Q5", "Q7"].map((m) => (
-      <option key={m} value={m}>
-        {m}
-      </option>
-    ))}
-
-  {brand === "Mercedes-Benz" &&
-    ["Clase A", "Clase C", "Clase E", "GLA", "GLC", "GLE"].map((m) => (
-      <option key={m} value={m}>
-        {m}
-      </option>
-    ))}
-</select>
+                {(MODELS_BY_BRAND[brand] || []).map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
+                ))}
+              </select>
 
               <select
                 value={fuel}
@@ -213,29 +278,6 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
               ))}
             </div>
           </div>
-
-          {/* STATS */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mt-12">
-            <div>
-              <div className="text-3xl font-black text-[#13233A]">50.000+</div>
-              <div className="text-sm text-gray-500">Anuncios activos</div>
-            </div>
-
-            <div>
-              <div className="text-3xl font-black text-[#13233A]">5</div>
-              <div className="text-sm text-gray-500">Plataformas</div>
-            </div>
-
-            <div>
-              <div className="text-3xl font-black text-[#13233A]">2.400+</div>
-              <div className="text-sm text-gray-500">Chollos hoy</div>
-            </div>
-
-            <div>
-              <div className="text-3xl font-black text-[#13233A]">100%</div>
-              <div className="text-sm text-gray-500">Gratis</div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -258,6 +300,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
               <p className="text-sm font-bold text-orange-500 uppercase">
                 Chollos destacados
               </p>
+
               <h2 className="text-3xl font-black text-[#13233A]">
                 Los mejores precios ahora mismo
               </h2>
@@ -284,65 +327,10 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
               />
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <button
-              onClick={() => onNavigate('/coches')}
-              className="bg-[#13233A] text-white px-8 py-3 rounded-xl font-bold"
-            >
-              Ver todos los coches
-            </button>
-          </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-
-          <h2 className="text-3xl font-black text-[#13233A] mb-3">
-            ¿Cómo funciona?
-          </h2>
-
-          <p className="text-gray-500 mb-10">
-            Tecnología de inteligencia artificial para que nunca pagues de más
-          </p>
-
-          <div className="grid md:grid-cols-4 gap-6 text-left">
-
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-bold mb-2">Valoración IA</h3>
-              <p className="text-sm text-gray-600">
-                Analizamos miles de precios para detectar si un coche es un chollo.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-bold mb-2">5 plataformas</h3>
-              <p className="text-sm text-gray-600">
-                Wallapop, Milanuncios, Coches.net y más.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-bold mb-2">Alertas</h3>
-              <p className="text-sm text-gray-600">
-                Recibe avisos cuando aparezca el coche ideal.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-bold mb-2">Acceso directo</h3>
-              <p className="text-sm text-gray-600">
-                Siempre te llevamos al anuncio original.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* LEGAL + CTA */}
+      {/* CTA */}
       <section className="bg-[#13233A] text-white py-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
 
@@ -355,31 +343,14 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
             cuando aparezca el coche que buscas.
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center mb-10">
-            <button
-              onClick={onOpenAuth}
-              className="bg-green-500 text-white px-8 py-3 rounded-xl font-bold"
-            >
-              Crear cuenta gratis
-            </button>
-
-            <button
-              onClick={() => onNavigate('/coches')}
-              className="border border-white/30 px-8 py-3 rounded-xl font-semibold"
-            >
-              Ver coches sin registrarme
-            </button>
-          </div>
-
-          <p className="text-sm text-gray-400 max-w-3xl mx-auto">
-            AportuCoche no vende vehículos directamente.
-            Actuamos como comparador de anuncios de terceros.
-            La compra se realiza siempre en la plataforma original del anuncio.
-            Los precios, disponibilidad e imágenes pueden variar según la plataforma de origen.
-          </p>
+          <button
+            onClick={onOpenAuth}
+            className="bg-green-500 text-white px-8 py-3 rounded-xl font-bold"
+          >
+            Crear cuenta gratis
+          </button>
         </div>
       </section>
-
     </div>
   );
 }

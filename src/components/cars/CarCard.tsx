@@ -1,15 +1,5 @@
 import { getCarImage } from '../../utils/getCarImage';
 import { Car, AIValuation } from '../../types';
-const getCarImage = (brand?: string, model?: string) => {
-  const fallback =
-    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200";
-
-  if (!brand) return fallback;
-
-  const query = `${brand} ${model || ""} car exterior`;
-
-  return `https://source.unsplash.com/featured/800x600/?${encodeURIComponent(query)}`;
-};
 
 interface CarCardProps {
   car: Car;
@@ -22,11 +12,13 @@ interface CarCardProps {
 
 export function CarCard({ car }: CarCardProps) {
   return (
-<img
-  src={getCarImage(car.brand, car.model)}
-  alt={`${car.brand} ${car.model}`}
-  className="w-full h-[220px] object-cover"
-/>
+    <div className="bg-white rounded-2xl overflow-hidden shadow">
+      <img
+        src={getCarImage(car.brand, car.model)}
+        alt={`${car.brand} ${car.model}`}
+        className="w-full h-[220px] object-cover"
+      />
+
       <div className="p-4">
         <h3 className="font-bold text-lg">
           {car.brand} {car.model}

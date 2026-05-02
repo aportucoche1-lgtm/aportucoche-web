@@ -55,6 +55,11 @@ export function CarCard({ car }: CarCardProps) {
 
       <div className="p-4">
         <h3 className="font-bold text-lg">
+          <div className="mt-2 mb-2">
+  <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+    {car.source || 'Marketplace'}
+  </span>
+</div>
           {car.brand} {car.model}
         </h3>
 

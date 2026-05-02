@@ -5,9 +5,9 @@ const getCarImage = (brand?: string, model?: string) => {
 
   if (!brand && !model) return fallback;
 
-  const query = `${brand || ""} ${model || ""} car`;
+  const query = `${brand || ""} ${model || ""} official car`;
 
-  return `https://source.unsplash.com/800x600/?${encodeURIComponent(query)}`;
+  return `https://source.unsplash.com/featured/800x600/?${encodeURIComponent(query)}`;
 };
 
 interface CarCardProps {

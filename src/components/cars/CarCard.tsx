@@ -38,31 +38,6 @@ function getFallbackImage(brand?: string, model?: string) {
 
   return 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
 }
-  const fallback =
-    'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200';
-
-  if (!brand) return fallback;
-
-  const search = `${brand} ${model || ''}`.toLowerCase();
-
-  if (search.includes('bmw')) {
-    return 'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200';
-  }
-
-  if (search.includes('audi')) {
-    return 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=1200';
-  }
-
-  if (search.includes('mercedes')) {
-    return 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200';
-  }
-
-  if (search.includes('tesla')) {
-    return 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1200';
-  }
-
-  return fallback;
-}
 
 export function CarCard({ car }: CarCardProps) {
   const imageUrl =
@@ -77,15 +52,15 @@ export function CarCard({ car }: CarCardProps) {
       rel="noopener noreferrer"
       className="block bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition"
     >
-     <img
-  src={imageUrl}
-  alt={`${car.brand} ${car.model}`}
-  className="w-full h-[220px] object-cover"
-  onError={(e) => {
-    e.currentTarget.src =
-      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
-  }}
-/>
+      <img
+        src={imageUrl}
+        alt={`${car.brand} ${car.model}`}
+        className="w-full h-[220px] object-cover"
+        onError={(e) => {
+          e.currentTarget.src =
+            'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
+        }}
+      />
 
       <div className="p-4">
         <div className="mb-2">

@@ -77,11 +77,15 @@ export function CarCard({ car }: CarCardProps) {
       rel="noopener noreferrer"
       className="block bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition"
     >
-      <img
-        src={imageUrl}
-        alt={`${car.brand} ${car.model}`}
-        className="w-full h-[220px] object-cover"
-      />
+     <img
+  src={imageUrl}
+  alt={`${car.brand} ${car.model}`}
+  className="w-full h-[220px] object-cover"
+  onError={(e) => {
+    e.currentTarget.src =
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
+  }}
+/>
 
       <div className="p-4">
         <div className="mb-2">

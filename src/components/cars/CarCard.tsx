@@ -15,9 +15,33 @@ function getCarImage(brand?: string, model?: string) {
 
   if (!brand) return fallback;
 
-  const query = `${brand} ${model || ''} car exterior`;
+  const search = `${brand} ${model || ''}`.toLowerCase();
 
-  return `https://source.unsplash.com/featured/800x600/?${encodeURIComponent(query)}`;
+  if (search.includes('bmw')) {
+    return 'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200';
+  }
+
+  if (search.includes('audi')) {
+    return 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=1200';
+  }
+
+  if (search.includes('mercedes')) {
+    return 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200';
+  }
+
+  if (search.includes('tesla')) {
+    return 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1200';
+  }
+
+  if (search.includes('toyota')) {
+    return 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1200';
+  }
+
+  if (search.includes('volkswagen')) {
+    return 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200';
+  }
+
+  return fallback;
 }
 
 export function CarCard({ car }: CarCardProps) {

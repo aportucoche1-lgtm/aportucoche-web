@@ -9,42 +9,7 @@ interface CarCardProps {
   onAuthRequired: () => void;
 }
 
-function getFallbackImage(brand?: string, model?: string) {
-  const search = `${brand || ''} ${model || ''}`.toLowerCase();
-
-  if (search.includes('bmw')) {
-    return 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80';
-  }
-
-  if (search.includes('audi')) {
-    return 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80';
-  }
-
-  if (search.includes('mercedes')) {
-    return 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80';
-  }
-
-  if (search.includes('tesla')) {
-    return 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80';
-  }
-
-  if (search.includes('toyota')) {
-    return 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80';
-  }
-
-  if (search.includes('volkswagen')) {
-    return 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80';
-  }
-
-  return 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
-}
-
 export function CarCard({ car }: CarCardProps) {
-  const imageUrl =
-    car.image && car.image.length > 5
-      ? car.image
-      : getFallbackImage(car.brand, car.model);
-
   return (
     <a
       href={car.url}
@@ -53,7 +18,7 @@ export function CarCard({ car }: CarCardProps) {
       className="block bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition"
     >
       <img
-        src={imageUrl}
+        src={car.image}
         alt={`${car.brand} ${car.model}`}
         className="w-full h-[220px] object-cover"
         onError={(e) => {
@@ -69,16 +34,16 @@ export function CarCard({ car }: CarCardProps) {
           </span>
         </div>
 
-        <h3 className="font-bold text-lg">
+        <h3 className="font-bold text-lg text-[#13233A]">
           {car.brand} {car.model}
         </h3>
 
-        <p className="text-gray-600">
-          {car.price?.toLocaleString('es-ES')} €
+        <p className="text-xl font-bold text-green-600 mt-2">
+          {car.price.toLocaleString('es-ES')} €
         </p>
 
         <p className="text-sm text-gray-500 mt-2">
-          {car.year} · {car.km?.toLocaleString('es-ES')} km
+          {car.year} · {car.km.toLocaleString('es-ES')} km · {car.province}
         </p>
       </div>
     </a>

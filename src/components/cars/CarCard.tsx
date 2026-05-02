@@ -10,6 +10,34 @@ interface CarCardProps {
 }
 
 function getFallbackImage(brand?: string, model?: string) {
+  const search = `${brand || ''} ${model || ''}`.toLowerCase();
+
+  if (search.includes('bmw')) {
+    return 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80';
+  }
+
+  if (search.includes('audi')) {
+    return 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=80';
+  }
+
+  if (search.includes('mercedes')) {
+    return 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80';
+  }
+
+  if (search.includes('tesla')) {
+    return 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80';
+  }
+
+  if (search.includes('toyota')) {
+    return 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80';
+  }
+
+  if (search.includes('volkswagen')) {
+    return 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80';
+  }
+
+  return 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
+}
   const fallback =
     'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200';
 

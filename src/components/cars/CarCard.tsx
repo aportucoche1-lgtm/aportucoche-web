@@ -9,7 +9,7 @@ interface CarCardProps {
   onAuthRequired: () => void;
 }
 
-function getCarImage(brand?: string, model?: string) {
+function getFallbackImage(brand?: string, model?: string) {
   const fallback =
     'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200';
 
@@ -33,40 +33,47 @@ function getCarImage(brand?: string, model?: string) {
     return 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1200';
   }
 
-  if (search.includes('toyota')) {
-    return 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?q=80&w=1200';
-  }
-
-  if (search.includes('volkswagen')) {
-    return 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200';
-  }
-
   return fallback;
 }
 
 export function CarCard({ car }: CarCardProps) {
+  const imageUrl =
+    car.image && car.image.length > 5
+      ? car.image
+      : getFallbackImage(car.brand, car.model);
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow">
+    <a
+      href={car.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition"
+    >
       <img
-        src={getCarImage(car.brand, car.model)}
+        src={imageUrl}
         alt={`${car.brand} ${car.model}`}
         className="w-full h-[220px] object-cover"
       />
 
       <div className="p-4">
+        <div className="mb-2">
+          <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+            {car.platform}
+          </span>
+        </div>
+
         <h3 className="font-bold text-lg">
-          <div className="mt-2 mb-2">
-  <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-    {car.source || 'Marketplace'}
-  </span>
-</div>
           {car.brand} {car.model}
         </h3>
 
         <p className="text-gray-600">
           {car.price?.toLocaleString('es-ES')} €
         </p>
+
+        <p className="text-sm text-gray-500 mt-2">
+          {car.year} · {car.km?.toLocaleString('es-ES')} km
+        </p>
       </div>
-    </div>
+    </a>
   );
 }

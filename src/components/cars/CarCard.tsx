@@ -1,4 +1,3 @@
-import { getCarImage } from '../../utils/getCarImage';
 import { Car, AIValuation } from '../../types';
 
 interface CarCardProps {
@@ -8,6 +7,17 @@ interface CarCardProps {
   onToggleFavorite: (car: Car) => void;
   isLoggedIn: boolean;
   onAuthRequired: () => void;
+}
+
+function getCarImage(brand?: string, model?: string) {
+  const fallback =
+    'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200';
+
+  if (!brand) return fallback;
+
+  const query = `${brand} ${model || ''} car exterior`;
+
+  return `https://source.unsplash.com/featured/800x600/?${encodeURIComponent(query)}`;
 }
 
 export function CarCard({ car }: CarCardProps) {

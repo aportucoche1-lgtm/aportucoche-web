@@ -75,26 +75,83 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-              <select
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-                className="border border-gray-200 rounded-xl px-4 py-3"
-              >
-                <option value="">Marca</option>
-                <option>BMW</option>
-                <option>Audi</option>
-                <option>Mercedes</option>
-                <option>Volkswagen</option>
-                <option>Toyota</option>
-                <option>Seat</option>
-              </select>
+           <select
+  value={brand}
+  onChange={(e) => {
+    setBrand(e.target.value);
+    setModel('');
+  }}
+  className="border border-gray-200 rounded-xl px-4 py-3"
+>
+  <option value="">Seleccionar marca</option>
 
-              <input
-                placeholder="Modelo (elige marca)"
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-                className="border border-gray-200 rounded-xl px-4 py-3"
-              />
+  {[
+    "Audi",
+    "BMW",
+    "Mercedes-Benz",
+    "Volkswagen",
+    "SEAT",
+    "Cupra",
+    "Toyota",
+    "Lexus",
+    "Porsche",
+    "Peugeot",
+    "Renault",
+    "Citroen",
+    "Opel",
+    "Ford",
+    "Hyundai",
+    "Kia",
+    "Mazda",
+    "Volvo",
+    "Tesla",
+    "Nissan",
+    "Honda",
+    "Skoda",
+    "Fiat",
+    "Jeep",
+    "Land Rover",
+    "Jaguar",
+    "Mini",
+    "Alfa Romeo"
+  ].map((item) => (
+    <option key={item} value={item}>
+      {item}
+    </option>
+  ))}
+</select>
+
+<select
+  value={model}
+  onChange={(e) => setModel(e.target.value)}
+  className="border border-gray-200 rounded-xl px-4 py-3"
+  disabled={!brand}
+>
+  <option value="">
+    {brand ? "Seleccionar modelo" : "Primero elige marca"}
+  </option>
+
+  {brand === "BMW" &&
+    ["Serie 1", "Serie 3", "Serie 5", "X1", "X3", "X5"].map((m) => (
+      <option key={m} value={m}>
+        {m}
+      </option>
+    ))}
+
+  {brand === "Audi" &&
+    ["A1", "A3", "A4", "A6", "Q3", "Q5", "Q7"].map((m) => (
+      <option key={m} value={m}>
+        {m}
+      </option>
+    ))}
+
+  {brand === "Mercedes-Benz" &&
+    ["Clase A", "Clase C", "Clase E", "GLA", "GLC", "GLE"].map((m) => (
+      <option key={m} value={m}>
+        {m}
+      </option>
+    ))}
+</select>
 
               <select
                 value={fuel}

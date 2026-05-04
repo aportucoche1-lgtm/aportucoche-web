@@ -1,27 +1,21 @@
 export const CAR_IMAGES: Record<string, string> = {
-  // BMW
   'bmw-serie-3':
-    'https://cdn.bmwblog.com/wp-content/uploads/2022/05/2023-bmw-3-series-facelift-01.jpg',
+    'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80',
 
-  // AUDI
   'audi-q3':
-    'https://www.audi.es/content/dam/nemo/models/q3/q3/my-2023/1920x1080-audi-q3.jpg',
+    'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80',
 
-  // MERCEDES
   'mercedes-benz-gla':
-    'https://www.mercedes-benz.es/content/dam/hq/passengercars/cars/gla/gla-h247-fl/overview/exterior/09-2023/images/mercedes-benz-gla-exterior-696x392.jpg',
+    'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=80',
 
-  // TESLA
   'tesla-model-3':
-    'https://tesla-cdn.thron.com/delivery/public/image/tesla/3d7d4a/model-3.jpg',
+    'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80',
 
-  // TOYOTA
   'toyota-rav4':
-    'https://www.toyota.es/content/dam/toyota/nmsc/spain/modelos/rav4/overview/rav4.jpg',
+    'https://images.unsplash.com/photo-1581540222194-0def2dda95b8?auto=format&fit=crop&w=1200&q=80',
 
-  // VOLKSWAGEN
   'volkswagen-golf':
-    'https://www.volkswagen.es/content/dam/vw-ngw/vw_pkw/importers/es/models/golf-8/overview/golf-8.jpg',
+    'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80',
 };
 
 const DEFAULT_IMAGE =
@@ -39,7 +33,6 @@ export function getCarImage(brand?: string, model?: string) {
   const brandNorm = normalize(brand);
   const modelNorm = normalize(model);
 
-  // 🔥 búsqueda flexible
   const match = Object.entries(CAR_IMAGES).find(([key]) => {
     const keyNorm = normalize(key);
     return keyNorm.includes(brandNorm) && keyNorm.includes(modelNorm);

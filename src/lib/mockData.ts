@@ -1,4 +1,5 @@
 import { Car } from '../types';
+import { getCarImage } from '../lib/getCarImage';
 
 export const MOCK_CARS: Car[] = [
   {
@@ -15,8 +16,7 @@ export const MOCK_CARS: Car[] = [
     seller: 'profesional',
     platform: 'coches.net',
     url: 'https://www.coches.net',
-    image:
-      'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80',
+    image: getCarImage('BMW', 'Serie 3'),
     color: 'Negro',
     transmission: 'Automático',
     power: 190,
@@ -39,8 +39,7 @@ export const MOCK_CARS: Car[] = [
     seller: 'profesional',
     platform: 'autoscout24',
     url: 'https://www.autoscout24.es',
-    image:
-      'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80',
+    image: getCarImage('Audi', 'Q3'),
     color: 'Blanco',
     transmission: 'Automático',
     power: 150,
@@ -63,8 +62,7 @@ export const MOCK_CARS: Car[] = [
     seller: 'profesional',
     platform: 'milanuncios',
     url: 'https://www.milanuncios.com',
-    image:
-      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
+    image: getCarImage('Mercedes-Benz', 'GLA'),
     color: 'Gris',
     transmission: 'Automático',
     power: 150,
@@ -87,8 +85,7 @@ export const MOCK_CARS: Car[] = [
     seller: 'particular',
     platform: 'wallapop',
     url: 'https://es.wallapop.com',
-    image:
-      'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1200&q=80',
+    image: getCarImage('Tesla', 'Model 3'),
     color: 'Blanco',
     transmission: 'Automático',
     power: 450,
@@ -111,8 +108,7 @@ export const MOCK_CARS: Car[] = [
     seller: 'profesional',
     platform: 'coches.net',
     url: 'https://www.coches.net',
-    image:
-      'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1200&q=80',
+    image: getCarImage('Toyota', 'RAV4'),
     color: 'Azul',
     transmission: 'Automático',
     power: 222,
@@ -135,8 +131,7 @@ export const MOCK_CARS: Car[] = [
     seller: 'profesional',
     platform: 'autoscout24',
     url: 'https://www.autoscout24.es',
-    image:
-      'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=80',
+    image: getCarImage('Volkswagen', 'Golf'),
     color: 'Gris',
     transmission: 'Automático',
     power: 150,

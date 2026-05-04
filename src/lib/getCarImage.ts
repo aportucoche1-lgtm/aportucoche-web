@@ -6,3 +6,29 @@ export const CAR_IMAGES: Record<string, string> = {
   'toyota-rav4': 'https://www.toyota.es/content/dam/toyota/nmsc/spain/modelos/rav4/overview/rav4.jpg',
   'volkswagen-golf': 'https://www.volkswagen.es/content/dam/vw-ngw/vw_pkw/importers/es/models/golf-8/overview/golf-8.jpg',
 };
+
+const DEFAULT_IMAGE =
+  'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80';
+
+export function getCarImage(brand?: string, model?: string) {
+  if (!brand) return DEFAULT_IMAGE;
+
+  const cleanBrand = brand.toLowerCase().replace(/\s+/g, '-');
+  const cleanModel = (model || '').toLowerCase().replace(/\s+/g, '-');
+
+  const key = `${cleanBrand}-${cleanModel}`;
+
+  // 1. intento exacto (bmw-serie-3)
+  if (CAR_IMAGES[key]) return CAR_IMAGES[key];
+
+  // 2. intento solo marca (bmw)
+  const brandKey = cleanBrand;
+  const brandImage = Object.entries(CAR_IMAGES).find(([k]) =>
+    k.startsWith(brandKey)
+  );
+
+  if (brandImage) return brandImage[1];
+
+  // 3. fallback final
+  return DEFAULT_IMAGE;
+}

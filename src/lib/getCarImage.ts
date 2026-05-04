@@ -4,7 +4,10 @@ export function getCarImage(brand?: string, model?: string) {
 
   if (!brand) return DEFAULT;
 
-  const query = `${brand} ${model || ''} car`;
+  const query = `${brand} ${model || ''} car exterior`;
 
-  return `https://source.unsplash.com/800x600/?${encodeURIComponent(query)}`;
+  // 🔥 clave: usar Unsplash search real
+  return `https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=80&${encodeURIComponent(
+    query
+  )}`;
 }

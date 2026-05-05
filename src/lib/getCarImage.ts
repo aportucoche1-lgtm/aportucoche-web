@@ -6,5 +6,8 @@ export function getCarImage(brand?: string, model?: string) {
 
   const query = `${brand || ''} ${model || ''} car`;
 
-  return `https://source.unsplash.com/800x600/?${encodeURIComponent(query)}`;
+  // 🔥 clave: añadimos random para evitar misma imagen
+  const random = Math.floor(Math.random() * 1000);
+
+  return `https://source.unsplash.com/800x600/?${encodeURIComponent(query)}&sig=${random}`;
 }

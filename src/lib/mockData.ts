@@ -1,5 +1,6 @@
 import { Car } from '../types';
-import { generateSearchLinks } from '../lib/generateSearchLinks';
+import { getCarImage } from '../lib/getCarImage';
+
 export const MOCK_CARS: Car[] = [
   {
     id: '1',

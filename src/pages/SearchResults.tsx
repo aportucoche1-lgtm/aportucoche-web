@@ -48,21 +48,13 @@ function generateSearchLinks(filters: {
     },
   ];
 }
+
 interface SearchResultsProps {
   onOpenAuth: () => void;
   userId?: string | null;
   isLoggedIn: boolean;
   initialSearchParams?: URLSearchParams;
 }
-
-const SORT_OPTIONS: { value: SortOption; label: string }[] = [
-  { value: 'chollos', label: 'Mejores chollos' },
-  { value: 'precio_asc', label: 'Precio: menor a mayor' },
-  { value: 'precio_desc', label: 'Precio: mayor a menor' },
-  { value: 'year_desc', label: 'Más reciente' },
-  { value: 'km_asc', label: 'Menos kilómetros' },
-  { value: 'reciente', label: 'Publicado recientemente' },
-];
 
 function buildInitialFilters(params?: URLSearchParams): SearchFilters {
   if (!params) return { sortBy: 'chollos' };
@@ -75,16 +67,6 @@ function buildInitialFilters(params?: URLSearchParams): SearchFilters {
   };
 }
 
-function filtersToSearchParams(filters: SearchFilters): URLSearchParams {
-  const params = new URLSearchParams();
-
-  if (filters.brand) params.set('brand', filters.brand);
-  if (filters.model) params.set('model', filters.model);
-  if (filters.province) params.set('province', filters.province);
-
-  return params;
-}
-
 export function SearchResults({
   onOpenAuth,
   userId,
@@ -95,57 +77,41 @@ export function SearchResults({
     buildInitialFilters(initialSearchParams)
   );
 
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [saveSearchOpen, setSaveSearchOpen] = useState(false);
-  const [saveSearchName, setSaveSearchName] = useState('');
-  const [savingSearch, setSavingSearch] = useState(false);
-
   const { addFavorite, removeFavorite, isFavorite } = useFavorites(userId);
 
-  const updateFilters = useCallback((newFilters: SearchFilters) => {
-    setFilters(newFilters);
+  // 🚀 DATOS DEMO (CLAVE PARA QUE NO SE REPITAN IMÁGENES)
+  const demoCars = [
+    { brand: 'BMW', model: 'Serie 3' },
+    { brand: 'Audi', model: 'Q3' },
+    { brand: 'Mercedes-Benz', model: 'GLA' },
+    { brand: 'Tesla', model: 'Model 3' },
+    { brand: 'Volkswagen', model: 'Golf' },
+  ];
 
-    const params = filtersToSearchParams(newFilters);
-    const url = params.toString()
-      ? `/coches?${params.toString()}`
-      : '/coches';
-
-    window.history.replaceState({}, '', url);
-  }, []);
-
-  useEffect(() => {
-    const handlePopState = () => {
-      setFilters(
-        buildInitialFilters(new URLSearchParams(window.location.search))
-      );
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
-  // 🚀 AQUÍ ESTÁ EL MOTOR REAL DEL MVP
   const filteredCars = useMemo(() => {
     const links = generateSearchLinks(filters);
 
-    const cars: Car[] = links.map((item, index) => ({
-      id: index.toString(),
-      title: `${filters.brand || ''} ${filters.model || ''}`.trim(),
-      brand: filters.brand || '',
-      model: filters.model || '',
-      year: 0,
-      price: 0,
-      km: 0,
-      fuel: 'gasolina',
-      bodyType: 'berlina',
-      province: filters.province || '',
-      seller: 'profesional',
-      platform: item.platform as any,
-      url: item.url,
-      image: getCarImage(filters.brand, filters.model),
-      createdAt: new Date().toISOString(),
-    }));
+    const cars: Car[] = links.map((item, index) => {
+      const demo = demoCars[index % demoCars.length];
+
+      return {
+        id: index.toString(),
+        title: `${demo.brand} ${demo.model}`,
+        brand: demo.brand,
+        model: demo.model,
+        year: 2020,
+        price: 20000 + index * 1500,
+        km: 50000,
+        fuel: 'gasolina',
+        bodyType: 'berlina',
+        province: filters.province || 'Madrid',
+        seller: 'profesional',
+        platform: item.platform as any,
+        url: item.url,
+        image: getCarImage(demo.brand, demo.model),
+        createdAt: new Date().toISOString(),
+      };
+    });
 
     return cars.map((car) => ({
       car,
@@ -157,28 +123,6 @@ export function SearchResults({
       },
     }));
   }, [filters]);
-
-  async function handleSaveSearch() {
-    if (!isLoggedIn) {
-      onOpenAuth();
-      return;
-    }
-
-    if (!saveSearchName.trim()) return;
-
-    setSavingSearch(true);
-
-    await supabase.from('saved_searches').insert({
-      user_id: userId,
-      name: saveSearchName,
-      filters: filters,
-      alert_enabled: false,
-    });
-
-    setSavingSearch(false);
-    setSaveSearchOpen(false);
-    setSaveSearchName('');
-  }
 
   const handleToggleFavorite = (car: Car) => {
     if (isFavorite(car.id)) removeFavorite(car.id);

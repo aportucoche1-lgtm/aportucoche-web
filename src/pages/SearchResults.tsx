@@ -1,20 +1,7 @@
-import {
-  Bell,
-  ChevronDown,
-  Flame,
-  LayoutGrid,
-  List,
-  Loader2,
-  Save,
-  Search,
-  SlidersHorizontal,
-  X,
-} from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { CarCard } from '../components/cars/CarCard';
-import { FilterPanel } from '../components/search/FilterPanel';
 import { supabase } from '../lib/supabase';
-import { Car, SearchFilters, SortOption } from '../types';
+import { Car, SearchFilters } from '../types';
 import { useFavorites } from '../hooks/useFavorites';
 import { getCarImage } from '../lib/getCarImage';
 
@@ -73,45 +60,37 @@ export function SearchResults({
   isLoggedIn,
   initialSearchParams,
 }: SearchResultsProps) {
-  const [filters, setFilters] = useState<SearchFilters>(() =>
+  const [filters] = useState<SearchFilters>(() =>
     buildInitialFilters(initialSearchParams)
   );
 
   const { addFavorite, removeFavorite, isFavorite } = useFavorites(userId);
 
-  // 🚀 DATOS DEMO (CLAVE PARA QUE NO SE REPITAN IMÁGENES)
-  const demoCars = [
-    { brand: 'BMW', model: 'Serie 3' },
-    { brand: 'Audi', model: 'Q3' },
-    { brand: 'Mercedes-Benz', model: 'GLA' },
-    { brand: 'Tesla', model: 'Model 3' },
-    { brand: 'Volkswagen', model: 'Golf' },
-  ];
-
   const filteredCars = useMemo(() => {
     const links = generateSearchLinks(filters);
 
-    const cars: Car[] = links.map((item, index) => {
-      const demo = demoCars[index % demoCars.length];
+    const cars: Car[] = links.map((item, index) => ({
+      id: index.toString(),
 
-      return {
-        id: index.toString(),
-        title: `${demo.brand} ${demo.model}`,
-        brand: demo.brand,
-        model: demo.model,
-        year: 2020,
-        price: 20000 + index * 1500,
-        km: 50000,
-        fuel: 'gasolina',
-        bodyType: 'berlina',
-        province: filters.province || 'Madrid',
-        seller: 'profesional',
-        platform: item.platform as any,
-        url: item.url,
-        image: getCarImage(demo.brand, demo.model),
-        createdAt: new Date().toISOString(),
-      };
-    });
+      title: `${filters.brand || 'Coche'} ${filters.model || ''}`.trim(),
+      brand: filters.brand || 'Coche',
+      model: filters.model || '',
+
+      year: 0,
+      price: 0,
+      km: 0,
+      fuel: 'gasolina',
+      bodyType: 'berlina',
+      province: filters.province || '',
+
+      seller: 'profesional',
+      platform: item.platform as any,
+      url: item.url,
+
+      image: getCarImage(filters.brand, filters.model),
+
+      createdAt: new Date().toISOString(),
+    }));
 
     return cars.map((car) => ({
       car,

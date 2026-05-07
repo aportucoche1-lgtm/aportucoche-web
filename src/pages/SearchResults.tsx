@@ -1,8 +1,5 @@
+import { useState } from 'react';
 import { estimateCarPrice } from '../lib/aiValuation';
-import { useEffect, useState } from 'react';
-import { CarCard } from '../components/cars/CarCard';
-import { useFavorites } from '../hooks/useFavorites';
-import { getCarImage } from '../lib/getCarImage';
 
 interface SearchResultsProps {
   onOpenAuth: () => void;
@@ -11,120 +8,97 @@ interface SearchResultsProps {
   initialSearchParams?: URLSearchParams;
 }
 
+function buildInitialFilters(params?: URLSearchParams) {
+  return {
+    brand: params?.get('brand') || '',
+    model: params?.get('model') || '',
+  };
+}
+
 export function SearchResults({
-  onOpenAuth,
-  userId,
-  isLoggedIn,
   initialSearchParams,
 }: SearchResultsProps) {
-  const { addFavorite, removeFavorite, isFavorite } = useFavorites(userId);
+  const [filters] = useState(() =>
+    buildInitialFilters(initialSearchParams)
+  );
 
-  const [cars, setCars] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const estimatedPrice = estimateCarPrice(
+    filters.brand,
+    filters.model
+  );
 
-  // Obtener filtros desde URL
-  const brand = initialSearchParams?.get('brand') || '';
-  const model = initialSearchParams?.get('model') || '';
+  const query = `${filters.brand} ${filters.model}`.trim();
 
-  useEffect(() => {
-    async function fetchCars() {
-      setLoading(true);
+  return (
+    <div className="min-h-screen bg-gray-50 pt-16">
+      <div className="max-w-3xl mx-auto px-4 py-10">
 
-      try {
-        const res = await fetch(
-          `/api/search?brand=${brand}&model=${model}`
-        );
+        <h1 className="text-3xl font-bold mb-4">
+          {filters.brand} {filters.model}
+        </h1>
 
-        const data = await res.json();
-        setCars(data);
-      } catch (error) {
-        console.error('Error fetching cars:', error);
-      }
+        {estimatedPrice && (
+          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
+            <p className="text-lg font-semibold text-green-700">
+              💰 Precio medio estimado:{' '}
+              {estimatedPrice.toLocaleString('es-ES')} €
+            </p>
+          </div>
+        )}
 
-      setLoading(false);
-    }
+        <h2 className="text-lg font-semibold mb-3">
+          Ver anuncios en plataformas:
+        </h2>
 
-    fetchCars();
-  }, [brand, model]);
+        <div className="space-y-3">
 
-  const handleToggleFavorite = (car: any) => {
-    if (isFavorite(car.id)) removeFavorite(car.id);
-    else addFavorite(car);
-  };
+          <a
+            href={`https://es.wallapop.com/app/search?keywords=${encodeURIComponent(query)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
+          >
+            Wallapop →
+          </a>
 
- const estimatedPrice = estimateCarPrice(filters.brand, filters.model);
+          <a
+            href={`https://www.coches.net/segunda-mano/?Key=${encodeURIComponent(query)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
+          >
+            Coches.net →
+          </a>
 
-return (
-  <div className="min-h-screen bg-gray-50 pt-16">
-    <div className="max-w-3xl mx-auto px-4 py-10">
+          <a
+            href={`https://www.autoscout24.es/lst?search=${encodeURIComponent(query)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
+          >
+            AutoScout24 →
+          </a>
 
-      <h1 className="text-3xl font-bold mb-4">
-        {filters.brand} {filters.model}
-      </h1>
+          <a
+            href={`https://www.milanuncios.com/coches-de-segunda-mano/?q=${encodeURIComponent(query)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
+          >
+            Milanuncios →
+          </a>
 
-      {estimatedPrice && (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
-          <p className="text-lg font-semibold text-green-700">
-            💰 Precio medio estimado: {estimatedPrice.toLocaleString('es-ES')} €
-          </p>
+          <a
+            href={`https://www.facebook.com/marketplace/search/?query=${encodeURIComponent(query)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
+          >
+            Facebook Marketplace →
+          </a>
+
         </div>
-      )}
-
-      <h2 className="text-lg font-semibold mb-3">
-        Ver anuncios en plataformas:
-      </h2>
-
-      <div className="space-y-3">
-        <a
-          href={`https://es.wallapop.com/app/search?keywords=${encodeURIComponent(
-            `${filters.brand} ${filters.model}`
-          )}`}
-          target="_blank"
-          className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
-        >
-          Wallapop →
-        </a>
-
-        <a
-          href={`https://www.coches.net/segunda-mano/?Key=${encodeURIComponent(
-            `${filters.brand} ${filters.model}`
-          )}`}
-          target="_blank"
-          className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
-        >
-          Coches.net →
-        </a>
-
-        <a
-          href={`https://www.autoscout24.es/lst?search=${encodeURIComponent(
-            `${filters.brand} ${filters.model}`
-          )}`}
-          target="_blank"
-          className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
-        >
-          AutoScout24 →
-        </a>
-
-        <a
-          href={`https://www.milanuncios.com/coches-de-segunda-mano/?q=${encodeURIComponent(
-            `${filters.brand} ${filters.model}`
-          )}`}
-          target="_blank"
-          className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
-        >
-          Milanuncios →
-        </a>
-
-        <a
-          href={`https://www.facebook.com/marketplace/search/?query=${encodeURIComponent(
-            `${filters.brand} ${filters.model}`
-          )}`}
-          target="_blank"
-          className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
-        >
-          Facebook Marketplace →
-        </a>
       </div>
     </div>
-  </div>
-);
+  );
+}

@@ -33,12 +33,12 @@ export default async function handler(req, res) {
       const kmMatch = block.match(/[\d\.\,]+\s?km/);
       const km = kmMatch ? kmMatch[0] : null;
 
-      const linkMatch = block.match(/href="([^"]+)"/);
+     const linkMatch = block.match(/href="(\/oferta\/[^"]+)"/);
       const link = linkMatch
         ? 'https://www.autoscout24.es' + linkMatch[1]
         : null;
 
-      if (link) {
+     if (link && title.toLowerCase().includes(query.toLowerCase())) {
         cars.push({
           title,
           price,

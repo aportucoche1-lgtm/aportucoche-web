@@ -38,7 +38,10 @@ export default async function handler(req, res) {
         ? 'https://www.autoscout24.es' + linkMatch[1]
         : null;
 
-     if (link && title.toLowerCase().includes(query.toLowerCase())) {
+    const brandMatch = brand && title.toLowerCase().includes(brand.toLowerCase());
+const modelMatch = model && title.toLowerCase().includes(model.toLowerCase());
+
+if (link && (brandMatch || modelMatch)) {
         cars.push({
           title,
           price,

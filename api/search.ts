@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     const brandMatch = brand && title.toLowerCase().includes(brand.toLowerCase());
 const modelMatch = model && title.toLowerCase().includes(model.toLowerCase());
 
-if (link && (brandMatch || modelMatch)) {
+if (link) {
         cars.push({
           title,
           price,

@@ -15,26 +15,20 @@ function buildInitialFilters(params?: URLSearchParams) {
   };
 }
 
-export function SearchResults({
-  initialSearchParams,
-}: SearchResultsProps) {
+export function SearchResults({ initialSearchParams }: SearchResultsProps) {
   const [filters] = useState(() =>
     buildInitialFilters(initialSearchParams)
   );
 
-  const estimatedPrice = estimateCarPrice(
-    filters.brand,
-    filters.model
-  );
-
   const query = `${filters.brand} ${filters.model}`.trim();
+  const estimatedPrice = estimateCarPrice(filters.brand, filters.model);
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       <div className="max-w-3xl mx-auto px-4 py-10">
 
         <h1 className="text-3xl font-bold mb-4">
-          {filters.brand} {filters.model}
+          {query || 'Búsqueda de coches'}
         </h1>
 
         {estimatedPrice && (
@@ -47,7 +41,7 @@ export function SearchResults({
         )}
 
         <h2 className="text-lg font-semibold mb-3">
-          Ver anuncios en plataformas:
+          Ver anuncios reales:
         </h2>
 
         <div className="space-y-3">
@@ -58,7 +52,7 @@ export function SearchResults({
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            Wallapop →
+            🔎 Ver en Wallapop →
           </a>
 
           <a
@@ -67,7 +61,7 @@ export function SearchResults({
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            Coches.net →
+            🔎 Ver en Coches.net →
           </a>
 
           <a
@@ -76,7 +70,7 @@ export function SearchResults({
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            AutoScout24 →
+            🔎 Ver en AutoScout24 →
           </a>
 
           <a
@@ -85,7 +79,7 @@ export function SearchResults({
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            Milanuncios →
+            🔎 Ver en Milanuncios →
           </a>
 
           <a
@@ -94,10 +88,11 @@ export function SearchResults({
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            Facebook Marketplace →
+            🔎 Ver en Facebook Marketplace →
           </a>
 
         </div>
+
       </div>
     </div>
   );

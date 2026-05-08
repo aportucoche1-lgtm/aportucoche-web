@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { estimateCarPrice } from '../lib/aiValuation';
 
 interface SearchResultsProps {
   onOpenAuth: () => void;
@@ -21,30 +20,20 @@ export function SearchResults({ initialSearchParams }: SearchResultsProps) {
   );
 
   const query = `${filters.brand} ${filters.model}`.trim();
-  const estimatedPrice = estimateCarPrice(filters.brand, filters.model);
 
   return (
     <div className="min-h-screen bg-gray-50 pt-16">
       <div className="max-w-3xl mx-auto px-4 py-10">
 
-        <h1 className="text-3xl font-bold mb-4">
+        <h1 className="text-3xl font-bold mb-6">
           {query || 'Búsqueda de coches'}
         </h1>
 
-        {estimatedPrice && (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
-            <p className="text-lg font-semibold text-green-700">
-              💰 Precio medio estimado:{' '}
-              {estimatedPrice.toLocaleString('es-ES')} €
-            </p>
-          </div>
-        )}
+        <p className="mb-6 text-gray-600">
+          Selecciona una plataforma para ver anuncios reales:
+        </p>
 
-        <h2 className="text-lg font-semibold mb-3">
-          Ver anuncios reales:
-        </h2>
-
-        <div className="space-y-3">
+        <div className="space-y-4">
 
           <a
             href={`https://es.wallapop.com/app/search?keywords=${encodeURIComponent(query)}`}
@@ -52,7 +41,7 @@ export function SearchResults({ initialSearchParams }: SearchResultsProps) {
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            🔎 Ver en Wallapop →
+            🔎 Buscar en Wallapop →
           </a>
 
           <a
@@ -61,7 +50,7 @@ export function SearchResults({ initialSearchParams }: SearchResultsProps) {
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            🔎 Ver en Coches.net →
+            🔎 Buscar en Coches.net →
           </a>
 
           <a
@@ -70,7 +59,7 @@ export function SearchResults({ initialSearchParams }: SearchResultsProps) {
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            🔎 Ver en AutoScout24 →
+            🔎 Buscar en AutoScout24 →
           </a>
 
           <a
@@ -79,7 +68,7 @@ export function SearchResults({ initialSearchParams }: SearchResultsProps) {
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            🔎 Ver en Milanuncios →
+            🔎 Buscar en Milanuncios →
           </a>
 
           <a
@@ -88,7 +77,7 @@ export function SearchResults({ initialSearchParams }: SearchResultsProps) {
             rel="noopener noreferrer"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md"
           >
-            🔎 Ver en Facebook Marketplace →
+            🔎 Buscar en Facebook Marketplace →
           </a>
 
         </div>

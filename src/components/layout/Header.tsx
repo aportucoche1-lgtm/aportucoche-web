@@ -13,13 +13,13 @@ export function Header({ onNavigate }: HeaderProps) {
 
         {/* LOGO */}
         <div
-          className="flex items-center gap-4 cursor-pointer"
+         className="flex items-center gap-2 cursor-pointer"
           onClick={() => onNavigate('/')}
         >
           <img
             src="/logo.png"
             alt="AportuCoche"
-            className="w-20 h-20 object-contain"
+           className="w-32 h-32 object-contain"
           />
 
           <div>

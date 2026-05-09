@@ -1,59 +1,45 @@
-export default async function handler(req, res) {
-  const { brand = '', model = '' } = req.query;
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
+  const brand = String(req.query.brand || '');
+  const model = String(req.query.model || '');
 
   const query = `${brand} ${model}`.trim();
-  const url = `https://www.autoscout24.es/lst?sort=standard&desc=0&ustate=N%2CU&size=20&search=${encodeURIComponent(
-    query
-  )}`;
 
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0',
-      },
-    });
+  const results = [
+    {
+      title: `${query} en Wallapop`,
+      platform: 'Wallapop',
+      url: `https://es.wallapop.com/app/search?keywords=${encodeURIComponent(query)}`,
+    },
 
-    const html = await response.text();
+    {
+      title: `${query} en Milanuncios`,
+      platform: 'Milanuncios',
+      url: `https://www.milanuncios.com/coches-de-segunda-mano/?q=${encodeURIComponent(query)}`,
+    },
 
-    const cars = [];
+    {
+      title: `${query} en Coches.net`,
+      platform: 'Coches.net',
+      url: `https://www.coches.net/segunda-mano/?Key=${encodeURIComponent(query)}`,
+    },
 
-    const blocks = html.split('cldt-summary-full-item');
+    {
+      title: `${query} en AutoScout24`,
+      platform: 'AutoScout24',
+      url: `https://www.autoscout24.es/lst?search=${encodeURIComponent(query)}`,
+    },
 
-    for (let i = 1; i < Math.min(blocks.length, 15); i++) {
-      const block = blocks[i];
+    {
+      title: `${query} en Facebook Marketplace`,
+      platform: 'Facebook Marketplace',
+      url: `https://www.facebook.com/marketplace/search/?query=${encodeURIComponent(query)}`,
+    },
+  ];
 
-      const titleMatch = block.match(/<h2[^>]*>(.*?)<\/h2>/);
-      const title = titleMatch
-        ? titleMatch[1].replace(/<[^>]+>/g, '').trim()
-        : query;
-
-      const priceMatch = block.match(/€\s?[\d\.\,]+/);
-      const price = priceMatch ? priceMatch[0] : null;
-
-      const kmMatch = block.match(/[\d\.\,]+\s?km/);
-      const km = kmMatch ? kmMatch[0] : null;
-
-     const linkMatch = block.match(/href="(\/oferta\/[^"]+)"/);
-      const link = linkMatch
-        ? 'https://www.autoscout24.es' + linkMatch[1]
-        : null;
-
-    const brandMatch = brand && title.toLowerCase().includes(brand.toLowerCase());
-const modelMatch = model && title.toLowerCase().includes(model.toLowerCase());
-
-if (link) {
-        cars.push({
-          title,
-          price,
-          km,
-          platform: 'autoscout24',
-          url: link,
-        });
-      }
-    }
-
-    res.status(200).json(cars);
-  } catch (error) {
-    res.status(500).json({ error: 'Error scraping AutoScout' });
-  }
+  return res.status(200).json(results);
 }

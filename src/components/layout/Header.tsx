@@ -8,57 +8,58 @@ interface HeaderProps {
 
 export function Header({ onNavigate }: HeaderProps) {
   return (
-    <header className="bg-[#13233A] text-white px-6 py-4 shadow-lg">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
+    <header className="bg-[#0F213D] border-b border-[#1B3358] px-8 py-4">
+
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
 
         {/* LOGO */}
         <div
-         className="flex items-center gap-2 cursor-pointer"
           onClick={() => onNavigate('/')}
+          className="flex items-center gap-4 cursor-pointer"
         >
           <img
             src="/logo.png"
             alt="AportuCoche"
-           className="w-32 h-32 object-contain"
+            className="w-16 h-16 object-contain"
           />
 
-          <div>
-            <div className="text-3xl font-black leading-none">
+          <div className="leading-tight">
+            <div className="text-4xl font-black">
               <span className="text-white">aportu</span>
               <span className="text-green-400">coche</span>
-              <span className="text-gray-300 text-xl">.com</span>
+              <span className="text-gray-300 text-2xl">.com</span>
             </div>
 
-            <div className="text-xs text-gray-400 mt-1">
+            <div className="text-sm text-gray-400">
               Comparador inteligente de coches
             </div>
           </div>
         </div>
 
         {/* SEARCH */}
-        <div className="hidden md:flex items-center bg-white rounded-2xl px-4 py-3 w-[450px] shadow-inner">
+        <div className="hidden md:flex items-center bg-white rounded-2xl px-5 py-3 w-[420px]">
           <Search className="text-gray-400 w-5 h-5 mr-3" />
 
           <input
+            type="text"
             placeholder="Busca marca, modelo..."
-            className="w-full text-black outline-none text-sm"
+            className="w-full outline-none text-gray-700"
           />
         </div>
 
-        {/* NAV */}
-        <div className="flex items-center gap-6 text-sm font-semibold">
-          <span
-            className="cursor-pointer hover:text-green-400 transition"
-            onClick={() => onNavigate('/coches')}
-          >
+        {/* MENU */}
+        <nav className="flex items-center gap-8 text-white font-semibold">
+          <button onClick={() => onNavigate('/coches')}>
             Coches
-          </span>
+          </button>
 
           <span className="opacity-60">Motos</span>
+
           <span className="opacity-60">Autocaravanas</span>
-        </div>
+        </nav>
 
       </div>
+
     </header>
   );
 }

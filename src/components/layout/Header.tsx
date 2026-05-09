@@ -19,7 +19,7 @@ export function Header({ onNavigate }: HeaderProps) {
           <img
             src="/logo.png"
             alt="AportuCoche"
-            className="w-14 h-14 object-contain rounded-xl bg-white p-1"
+           className="w-20 h-20
           />
 
           <div>

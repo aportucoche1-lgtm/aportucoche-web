@@ -14,16 +14,10 @@ export function Header({ onNavigate }: HeaderProps) {
       <img
         src="/logo.png"
         alt="background logo"
-        className="
-          absolute
-          left-[22%]
-          top-[-140px]
-          w-[420px]
-          opacity-[0.05]
-          blur-[1px]
-          pointer-events-none
-          select-none
-        "
+       className="
+  absolute
+  left-[8%]
+  top-[-
       />
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-5 relative z-10">

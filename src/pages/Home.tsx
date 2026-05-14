@@ -61,38 +61,36 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
       <section className="relative pt-16 pb-20 px-4 md:px-6 overflow-hidden">
 
         {/* WATERMARK */}
-        <img
-          src="/logo.png"
-          alt="watermark"
-          className="
-            absolute
+       <img
+  src="/logo.png"
+  alt="watermark"
+  className="
+    absolute
+    left-1/2
+    top-[120px]
 
-            left-1/2
-            top-[40px]
+    -translate-x-1/2
 
-            -translate-x-1/2
+    w-[1200px]
+    md:w-[2400px]
 
-            w-[1600px]
-            md:w-[3200px]
+    opacity-[0.16]
 
-            opacity-[0.09]
+    blur-[6px]
 
-            blur-[12px]
+    scale-[1.45]
 
-            scale-[1.15]
-
-            pointer-events-none
-            select-none
-          "
-        />
-
+    pointer-events-none
+    select-none
+  "
+/>
         <div className="relative z-10 max-w-6xl mx-auto text-center">
 
           {/* TITULO */}
           <h1
             className="
-              text-[52px]
-              md:text-[88px]
+            text-[42px]
+md:text-[72px]
               font-black
               tracking-[-2px]
               leading-none

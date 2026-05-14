@@ -66,6 +66,7 @@ const MODELS_BY_BRAND: Record<string, string[]> = {
 };
 
 export function Home({ onNavigate, onOpenAuth }: HomeProps) {
+
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [fuel, setFuel] = useState('');
@@ -86,19 +87,19 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
     <div className="min-h-screen bg-[#F7F8FA]">
 
       {/* HERO */}
-      <section className="relative overflow-hidden pt-14 md:pt-20 pb-14 px-4 md:px-6">
+      <section className="relative overflow-hidden pt-12 md:pt-16 pb-14 px-4 md:px-6">
 
-        {/* WATERMARK LOGO */}
+        {/* WATERMARK */}
         <img
           src="/logo.png"
           alt="watermark"
           className="
             absolute
-            left-[-120px]
-            top-[40px]
-            w-[500px]
-            md:w-[850px]
-            opacity-[0.045]
+            left-[-180px]
+            top-[30px]
+            w-[700px]
+            md:w-[1200px]
+            opacity-[0.06]
             pointer-events-none
             select-none
             z-0
@@ -107,7 +108,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
 
-          <h1 className="text-4xl md:text-7xl font-black text-[#13233A] leading-tight">
+          <h1 className="text-3xl md:text-6xl font-black text-[#13233A] leading-tight">
             Encuentra tu coche ideal
           </h1>
 
@@ -115,7 +116,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
             Busca en todas las plataformas desde un solo sitio.
           </p>
 
-          {/* SEARCH BOX */}
+          {/* SEARCH */}
           <div className="max-w-5xl mx-auto bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white p-4 md:p-7">
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -225,10 +226,12 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
           </div>
 
         </div>
+
       </section>
 
       {/* PLATFORMS */}
       <section className="border-y bg-white py-5 px-6">
+
         <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-5 md:gap-8 text-sm text-gray-500">
 
           <span className="font-semibold">
@@ -240,10 +243,12 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
           ))}
 
         </div>
+
       </section>
 
       {/* CARS */}
       <section className="py-16 px-4 md:px-6">
+
         <div className="max-w-6xl mx-auto">
 
           <h2 className="text-3xl md:text-5xl font-black mb-10 text-[#13233A]">
@@ -272,6 +277,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
           </div>
 
         </div>
+
       </section>
 
       {/* CTA */}

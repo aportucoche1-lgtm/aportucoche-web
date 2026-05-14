@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 interface HeaderProps {
   onNavigate: (path: string, query?: Record<string, string>) => void;
   currentPath: string;
- onOpenAuth: () => void;
+  onOpenAuth: () => void;
 }
 
 export function Header({ onNavigate }: HeaderProps) {
@@ -12,9 +12,18 @@ export function Header({ onNavigate }: HeaderProps) {
 
       {/* WATERMARK */}
       <img
-        src="/logo.png"
-        alt="background logo"
-        className="absolute left-[8%] top-[-220px] w-[760px] opacity-10 blur-[2px] pointer-events-none select-none"
+        src="/radar.png"
+        alt="background"
+        className="
+          absolute
+          left-[18%]
+          top-[-260px]
+          w-[820px]
+          opacity-[0.09]
+          blur-[2px]
+          pointer-events-none
+          select-none
+        "
       />
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4 relative z-10">
@@ -25,14 +34,16 @@ export function Header({ onNavigate }: HeaderProps) {
           className="flex items-center gap-4 cursor-pointer"
         >
           <img
-            src="/logo.png"
+            src="/radar.png"
             alt="AportuCoche"
-            className="w-20 h-20 object-contain"
+            className="w-16 h-16 object-contain"
           />
 
           <div className="leading-tight">
-            <div className="text-2xl font-black">
-              <span className="text-white">aportu</span>
+            <div className="text-2xl font-black tracking-tight">
+              <span className="text-white">
+                aportu
+              </span>
 
               <span className="text-green-400">
                 coche

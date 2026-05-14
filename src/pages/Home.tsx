@@ -59,21 +59,21 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
     <div className="min-h-screen bg-[#F5F7FA] overflow-hidden">
 
       {/* HERO */}
-      <section className="relative pt-14 md:pt-20 pb-14 px-5 overflow-hidden">
+      <section className="relative pt-10 md:pt-14 pb-14 px-5 overflow-hidden">
 
-        {/* WATERMARK */}
+        {/* WATERMARK GRANDE */}
         <img
           src="/logo.png"
           alt="watermark"
           className="
             absolute
-            left-[-40px]
-            top-[260px]
-            md:left-[120px]
-            md:top-[220px]
-            w-[420px]
-            md:w-[760px]
-            opacity-[0.14]
+            left-[-120px]
+            top-[180px]
+            md:left-[40px]
+            md:top-[120px]
+            w-[520px]
+            md:w-[1100px]
+            opacity-[0.12]
             pointer-events-none
             select-none
           "

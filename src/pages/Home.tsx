@@ -62,19 +62,21 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
       <section className="relative pt-10 md:pt-14 pb-14 px-5 overflow-hidden">
 
         {/* WATERMARK GRANDE */}
-      <img
+   <img
   src="/logo.png"
   alt="watermark"
   className="
     absolute
-    left-[-380px]
-    top-[220px]
 
-    md:left-[-260px]
-    md:top-[60px]
+    left-1/2
+    top-[120px]
 
-    w-[900px]
-    md:w-[1700px]
+    md:top-[40px]
+
+    -translate-x-1/2
+
+    w-[1200px]
+    md:w-[2100px]
 
     opacity-[0.045]
 

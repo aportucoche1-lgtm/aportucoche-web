@@ -8,12 +8,12 @@ export function Header({ onNavigate }: HeaderProps) {
   return (
     <header className="bg-[#0F213D] border-b border-[#1B3358]">
 
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-2 md:py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-1 md:py-2">
 
         {/* LOGO */}
         <div
           onClick={() => onNavigate('/')}
-          className="flex items-center gap-4 cursor-pointer"
+          className="flex items-center gap-3 cursor-pointer"
         >
 
           <img
@@ -22,10 +22,9 @@ export function Header({ onNavigate }: HeaderProps) {
             className="
               w-24
               h-24
-              md:w-40
-              md:h-40
+              md:w-44
+              md:h-44
               object-contain
-              drop-shadow-2xl
             "
           />
 

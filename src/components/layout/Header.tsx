@@ -8,7 +8,7 @@ export function Header({ onNavigate }: HeaderProps) {
   return (
     <header className="bg-[#0F213D] border-b border-[#1B3358]">
 
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-1 md:py-2">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 h-[78px] md:h-[88px]">
 
         {/* LOGO */}
         <div
@@ -20,17 +20,17 @@ export function Header({ onNavigate }: HeaderProps) {
             src="/logo.png"
             alt="AportuCoche"
             className="
-              w-24
-              h-24
-              md:w-44
-              md:h-44
+              w-14
+              h-14
+              md:w-20
+              md:h-20
               object-contain
             "
           />
 
           <div className="leading-tight">
 
-            <div className="text-lg md:text-3xl font-black">
+            <div className="text-[22px] md:text-[40px] font-black leading-none">
 
               <span className="text-white">
                 aportu
@@ -40,13 +40,13 @@ export function Header({ onNavigate }: HeaderProps) {
                 coche
               </span>
 
-              <span className="text-gray-300">
+              <span className="text-gray-300 text-[18px] md:text-[32px]">
                 .com
               </span>
 
             </div>
 
-            <div className="text-[11px] md:text-sm text-gray-400">
+            <div className="text-[10px] md:text-sm text-gray-400 mt-1">
               Comparador inteligente de coches
             </div>
 
@@ -55,7 +55,7 @@ export function Header({ onNavigate }: HeaderProps) {
         </div>
 
         {/* MENU */}
-        <nav className="flex items-center gap-4 md:gap-8 text-white font-semibold text-sm md:text-lg">
+        <nav className="flex items-center gap-4 md:gap-10 text-white font-semibold text-sm md:text-lg">
 
           <button onClick={() => onNavigate('/coches')}>
             Coches

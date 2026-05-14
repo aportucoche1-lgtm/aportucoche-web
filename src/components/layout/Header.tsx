@@ -1,84 +1,61 @@
 interface HeaderProps {
   onNavigate: (path: string, query?: Record<string, string>) => void;
   currentPath: string;
-  onOpenAuth: () => void;
+ onOpenAuth: () => void;
 }
 
 export function Header({ onNavigate }: HeaderProps) {
   return (
-    <header className="bg-[#0F213D] border-b border-[#1B3358] relative overflow-hidden">
+    <header className="bg-[#0F213D] border-b border-[#1B3358]">
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-3 md:py-4">
 
-        <div className="flex items-center justify-between py-2 md:py-3">
+        {/* LOGO */}
+        <div
+          onClick={() => onNavigate('/')}
+          className="flex items-center gap-3 cursor-pointer"
+        >
+          <img
+            src="/logo.png"
+            alt="AportuCoche"
+            className="
+              w-20
+              h-20
+              md:w-32
+              md:h-32
+              object-contain
+            "
+          />
 
-          {/* LOGO */}
-          <div
-            onClick={() => onNavigate('/')}
-            className="flex items-center gap-3 cursor-pointer relative z-10"
-          >
-
-            <img
-              src="/logo.png"
-              alt="AportuCoche"
-              className="
-           className="
-                w-20
-                h-20
-                md:w-32
-                md:h-32
-                object-contain
-                drop-shadow-lg
-              "
-            />
-
-            <div className="leading-tight">
-
-              <div className="font-black leading-none">
-
-                <span className="text-white text-xl md:text-3xl">
-                  aportu
-                </span>
-
-                <span className="text-green-400 text-xl md:text-3xl">
-                  coche
-                </span>
-
-                <span className="text-gray-300 text-base md:text-xl ml-1">
-                  .com
-                </span>
-
-              </div>
-
-              <div className="text-gray-400 text-[10px] md:text-sm mt-1">
-                Comparador inteligente de coches
-              </div>
-
+          <div className="leading-tight">
+            <div className="text-xl md:text-4xl font-black">
+              <span className="text-white">aportu</span>
+              <span className="text-green-400">coche</span>
+              <span className="text-gray-300">.com</span>
             </div>
 
+            <div className="text-xs md:text-base text-gray-400">
+              Comparador inteligente de coches
+            </div>
           </div>
-
-          {/* MENU */}
-          <nav className="flex items-center gap-4 md:gap-8 text-white font-semibold relative z-10">
-
-            <button
-              onClick={() => onNavigate('/coches')}
-              className="hover:text-green-400 transition"
-            >
-              Coches
-            </button>
-
-            <span className="opacity-60 hidden md:block">
-              Motos
-            </span>
-
-            <span className="opacity-60 hidden md:block">
-              Autocaravanas
-            </span>
-
-          </nav>
-
         </div>
+
+        {/* MENU */}
+        <nav className="flex items-center gap-4 md:gap-8 text-white font-semibold text-sm md:text-lg">
+
+          <button onClick={() => onNavigate('/coches')}>
+            Coches
+          </button>
+
+          <span className="opacity-60">
+            Motos
+          </span>
+
+          <span className="opacity-60">
+            Autocaravanas
+          </span>
+
+        </nav>
 
       </div>
 

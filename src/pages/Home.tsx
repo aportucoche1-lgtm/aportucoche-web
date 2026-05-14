@@ -69,20 +69,20 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
     absolute
 
     left-1/2
-    top-[-120px]
+    top-[40px]
 
-    md:top-[-320px]
+    md:top-[-40px]
 
     -translate-x-1/2
 
     w-[1500px]
-    md:w-[2600px]
+    md:w-[2400px]
 
-    opacity-[0.11]
+    opacity-[0.06]
 
-    blur-[5px]
+    blur-[10px]
 
-    scale-[1.08]
+    scale-[1.12]
 
     pointer-events-none
     select-none

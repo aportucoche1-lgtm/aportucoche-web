@@ -67,7 +67,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
   className="
     absolute
     left-1/2
-    top-[120px]
+    top-[-20px]
 
     -translate-x-1/2
 

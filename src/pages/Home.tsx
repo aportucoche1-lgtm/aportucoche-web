@@ -17,52 +17,24 @@ const platforms = [
 ];
 
 const BRANDS = [
-  'Audi',
-  'BMW',
-  'Mercedes-Benz',
-  'Volkswagen',
-  'SEAT',
-  'Cupra',
-  'Toyota',
-  'Peugeot',
-  'Renault',
-  'Ford',
-  'Hyundai',
-  'Kia',
-  'Tesla',
-  'Nissan',
-  'Honda',
-  'Mazda',
-  'Volvo',
-  'Skoda',
-  'Fiat',
-  'Jeep',
-  'Land Rover',
-  'Jaguar',
-  'Mini',
-  'Alfa Romeo',
-  'Dacia',
-  'Suzuki',
-  'Mitsubishi',
-  'Lexus',
-  'Porsche',
-  'Subaru',
-  'Smart',
-  'DS',
-  'MG',
+  'Audi','BMW','Mercedes-Benz','Volkswagen','SEAT','Cupra',
+  'Toyota','Peugeot','Renault','Ford','Hyundai','Kia','Tesla',
+  'Nissan','Honda','Mazda','Volvo','Skoda','Fiat','Jeep',
+  'Land Rover','Jaguar','Mini','Alfa Romeo','Dacia','Suzuki',
+  'Mitsubishi','Lexus','Porsche','Subaru','Smart','DS','MG'
 ];
 
 const MODELS_BY_BRAND: Record<string, string[]> = {
-  BMW: ['Serie 1', 'Serie 2', 'Serie 3', 'Serie 4', 'Serie 5', 'X1', 'X3', 'X5'],
-  Audi: ['A1', 'A3', 'A4', 'A5', 'A6', 'Q2', 'Q3', 'Q5', 'Q7'],
-  'Mercedes-Benz': ['Clase A', 'Clase C', 'Clase E', 'GLA', 'GLC', 'GLE'],
-  Volkswagen: ['Golf', 'Polo', 'Passat', 'Tiguan', 'T-Roc'],
-  SEAT: ['Ibiza', 'León', 'Arona', 'Ateca'],
-  Toyota: ['Yaris', 'Corolla', 'RAV4', 'C-HR'],
-  Ford: ['Fiesta', 'Focus', 'Kuga', 'Puma'],
-  Peugeot: ['208', '308', '2008', '3008'],
-  Renault: ['Clio', 'Megane', 'Captur'],
-  Tesla: ['Model 3', 'Model S', 'Model X', 'Model Y'],
+  BMW: ['Serie 1','Serie 2','Serie 3','Serie 4','Serie 5','X1','X3','X5'],
+  Audi: ['A1','A3','A4','A5','A6','Q2','Q3','Q5','Q7'],
+  'Mercedes-Benz': ['Clase A','Clase C','Clase E','GLA','GLC','GLE'],
+  Volkswagen: ['Golf','Polo','Passat','Tiguan','T-Roc'],
+  SEAT: ['Ibiza','León','Arona','Ateca'],
+  Toyota: ['Yaris','Corolla','RAV4','C-HR'],
+  Ford: ['Fiesta','Focus','Kuga','Puma'],
+  Peugeot: ['208','308','2008','3008'],
+  Renault: ['Clio','Megane','Captur'],
+  Tesla: ['Model 3','Model S','Model X','Model Y'],
 };
 
 export function Home({ onNavigate, onOpenAuth }: HomeProps) {
@@ -84,40 +56,41 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F8FA]">
+    <div className="min-h-screen bg-[#F5F7FA] overflow-hidden">
 
       {/* HERO */}
-      <section className="relative overflow-hidden pt-12 md:pt-16 pb-14 px-4 md:px-6">
+      <section className="relative pt-16 md:pt-24 pb-14 px-5 overflow-hidden">
 
-        {/* WATERMARK */}
+        {/* LOGO MARCA DE AGUA */}
         <img
           src="/logo.png"
           alt="watermark"
           className="
             absolute
-            left-[-180px]
-            top-[30px]
-            w-[700px]
-            md:w-[1200px]
-            opacity-[0.06]
+            left-[-60px]
+            top-[180px]
+            md:left-[60px]
+            md:top-[180px]
+            w-[320px]
+            md:w-[520px]
+            opacity-[0.08]
             pointer-events-none
             select-none
-            z-0
           "
         />
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
 
-          <h1 className="text-3xl md:text-6xl font-black text-[#13233A] leading-tight">
+          <h1 className="text-4xl md:text-7xl font-black text-[#13233A] leading-tight">
             Encuentra tu coche ideal
           </h1>
 
-          <p className="text-gray-600 max-w-3xl mx-auto mt-5 mb-10 text-base md:text-xl">
+          <p className="text-gray-600 max-w-3xl mx-auto mt-5 mb-10 text-lg md:text-2xl">
             Busca en todas las plataformas desde un solo sitio.
           </p>
 
-          {/* SEARCH */}
-          <div className="max-w-5xl mx-auto bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white p-4 md:p-7">
+          {/* BUSCADOR */}
+          <div className="max-w-5xl mx-auto bg-white rounded-[32px] shadow-2xl border border-gray-100 p-5 md:p-8">
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
@@ -127,15 +100,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
                   setBrand(e.target.value);
                   setModel('');
                 }}
-                className="
-                  border
-                  rounded-2xl
-                  px-4
-                  py-4
-                  bg-white
-                  text-[#13233A]
-                  font-medium
-                "
+                className="border rounded-2xl px-5 py-4 text-lg"
               >
                 <option value="">Seleccionar marca</option>
 
@@ -149,16 +114,8 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
               <select
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
+                className="border rounded-2xl px-5 py-4 text-lg"
                 disabled={!brand}
-                className="
-                  border
-                  rounded-2xl
-                  px-4
-                  py-4
-                  bg-white
-                  text-[#13233A]
-                  font-medium
-                "
               >
                 <option value="">
                   {brand ? 'Seleccionar modelo' : 'Primero marca'}
@@ -174,15 +131,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
               <select
                 value={fuel}
                 onChange={(e) => setFuel(e.target.value)}
-                className="
-                  border
-                  rounded-2xl
-                  px-4
-                  py-4
-                  bg-white
-                  text-[#13233A]
-                  font-medium
-                "
+                className="border rounded-2xl px-5 py-4 text-lg"
               >
                 <option value="">Combustible</option>
                 <option value="gasolina">Gasolina</option>
@@ -195,27 +144,21 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
                 placeholder="Provincia"
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
-                className="
-                  border
-                  rounded-2xl
-                  px-4
-                  py-4
-                  md:col-span-2
-                "
+                className="border rounded-2xl px-5 py-4 text-lg md:col-span-2"
               />
 
               <button
                 onClick={handleSearch}
                 className="
                   bg-black
-                  hover:bg-[#13233A]
-                  transition
                   text-white
                   rounded-2xl
                   font-bold
-                  px-6
+                  text-lg
+                  px-8
                   py-4
-                  shadow-lg
+                  hover:scale-[1.02]
+                  transition
                 "
               >
                 Buscar coches
@@ -226,17 +169,14 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
           </div>
 
         </div>
-
       </section>
 
-      {/* PLATFORMS */}
+      {/* PLATAFORMAS */}
       <section className="border-y bg-white py-5 px-6">
 
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-5 md:gap-8 text-sm text-gray-500">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 text-sm text-gray-500">
 
-          <span className="font-semibold">
-            ANUNCIOS DE:
-          </span>
+          <span>ANUNCIOS DE:</span>
 
           {platforms.map((p) => (
             <span key={p}>{p}</span>
@@ -246,12 +186,12 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
 
       </section>
 
-      {/* CARS */}
-      <section className="py-16 px-4 md:px-6">
+      {/* COCHES */}
+      <section className="py-16 px-6">
 
         <div className="max-w-6xl mx-auto">
 
-          <h2 className="text-3xl md:text-5xl font-black mb-10 text-[#13233A]">
+          <h2 className="text-3xl font-black mb-8 text-[#13233A]">
             Ejemplos de coches
           </h2>
 
@@ -281,24 +221,15 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
       </section>
 
       {/* CTA */}
-      <section className="bg-black text-white py-20 text-center px-6">
+      <section className="bg-black text-white py-20 text-center">
 
-        <h2 className="text-3xl md:text-5xl font-black mb-6">
+        <h2 className="text-4xl font-black mb-4">
           Empieza a buscar coches ahora
         </h2>
 
         <button
           onClick={onOpenAuth}
-          className="
-            bg-white
-            text-black
-            px-8
-            py-4
-            rounded-2xl
-            font-bold
-            hover:scale-105
-            transition
-          "
+          className="bg-white text-black px-8 py-3 rounded-xl font-bold"
         >
           Crear cuenta gratis
         </button>

@@ -22,10 +22,11 @@ export function Header({ onNavigate }: HeaderProps) {
               src="/logo.png"
               alt="AportuCoche"
               className="
-                w-16
-                h-16
-                md:w-24
-                md:h-24
+           className="
+                w-20
+                h-20
+                md:w-32
+                md:h-32
                 object-contain
                 drop-shadow-lg
               "

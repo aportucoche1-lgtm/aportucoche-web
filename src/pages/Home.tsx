@@ -59,21 +59,21 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
     <div className="min-h-screen bg-[#F5F7FA] overflow-hidden">
 
       {/* HERO */}
-      <section className="relative pt-16 md:pt-24 pb-14 px-5 overflow-hidden">
+      <section className="relative pt-14 md:pt-20 pb-14 px-5 overflow-hidden">
 
-        {/* LOGO MARCA DE AGUA */}
+        {/* WATERMARK */}
         <img
           src="/logo.png"
           alt="watermark"
           className="
             absolute
-            left-[-60px]
-            top-[180px]
-            md:left-[60px]
-            md:top-[180px]
-            w-[320px]
-            md:w-[520px]
-            opacity-[0.08]
+            left-[-40px]
+            top-[260px]
+            md:left-[120px]
+            md:top-[220px]
+            w-[420px]
+            md:w-[760px]
+            opacity-[0.14]
             pointer-events-none
             select-none
           "
@@ -81,7 +81,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
 
-          <h1 className="text-4xl md:text-7xl font-black text-[#13233A] leading-tight">
+          <h1 className="text-4xl md:text-6xl font-black text-[#13233A] leading-tight">
             Encuentra tu coche ideal
           </h1>
 
@@ -169,6 +169,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
           </div>
 
         </div>
+
       </section>
 
       {/* PLATAFORMAS */}

@@ -61,33 +61,33 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
       <section className="relative pt-16 pb-14 px-6 overflow-hidden">
 
         {/* WATERMARK LOGO */}
-        <img
-          src="/logo.png"
-          alt="watermark"
-          className="
-            absolute
-            left-1/2
-            top-[55%]
-            -translate-x-1/2
-            -translate-y-1/2
-            w-[950px]
-            md:w-[1200px]
-            opacity-[0.12]
-            blur-[3px]
-            pointer-events-none
-            select-none
-          "
-        />
+     <img
+  src="/logo.png"
+  alt="watermark"
+  className="
+    absolute
+    left-1/2
+    top-[52%]
+    -translate-x-1/2
+    -translate-y-1/2
+    w-[1400px]
+    md:w-[1800px]
+    opacity-[0.09]
+    blur-[5px]
+    pointer-events-none
+    select-none
+  "
+/>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center">
 
           {/* TITULO */}
-          <h1 className="text-4xl md:text-6xl font-black text-[#13233A] leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black text-[#13233A] leading-tight">
             Encuentra tu coche ideal
           </h1>
 
           {/* SUBTITULO */}
-          <p className="text-gray-600 max-w-3xl mx-auto mt-5 mb-12 text-lg md:text-xl">
+         <p className="text-gray-600 max-w-3xl mx-auto mt-4 mb-10 text-base md:text-lg">
             Busca en todas las plataformas desde un solo sitio.
           </p>
 

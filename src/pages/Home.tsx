@@ -58,26 +58,28 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
     <div className="min-h-screen bg-[#F7F8FA] overflow-hidden">
 
       {/* HERO */}
-      <section className="relative pt-16 pb-14 px-6 overflow-hidden">
+      <section className="relative pt-14 pb-14 px-6 overflow-hidden">
 
-        {/* WATERMARK LOGO */}
-    <img
-  src="/logo.png"
-  alt="watermark"
-  className="
-    absolute
-    left-1/2
-    top-[52%]
-    -translate-x-1/2
-    -translate-y-1/2
-    w-[1700px]
-    md:w-[2200px]
-    opacity-[0.14]
-    blur-[2px]
-    pointer-events-none
-    select-none
-  "
-/>
+        {/* WATERMARK */}
+        <img
+          src="/logo.png"
+          alt="watermark"
+          className="
+            absolute
+            left-1/2
+            top-[52%]
+            -translate-x-1/2
+            -translate-y-1/2
+            w-[2200px]
+            md:w-[3200px]
+            max-w-none
+            opacity-[0.11]
+            blur-[3px]
+            pointer-events-none
+            select-none
+          "
+        />
+
         <div className="relative z-10 max-w-6xl mx-auto text-center">
 
           {/* TITULO */}
@@ -86,7 +88,7 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
           </h1>
 
           {/* SUBTITULO */}
-         <p className="text-gray-600 max-w-3xl mx-auto mt-4 mb-10 text-base md:text-lg">
+          <p className="text-gray-600 max-w-3xl mx-auto mt-4 mb-10 text-base md:text-lg">
             Busca en todas las plataformas desde un solo sitio.
           </p>
 

@@ -61,22 +61,22 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
       <section className="relative pt-16 pb-20 px-4 md:px-6 overflow-hidden">
 
         {/* WATERMARK */}
-       <img
+     <img
   src="/logo.png"
   alt="watermark"
   className="
     absolute
     left-1/2
-   top-[-40px]
+    top-[-40px]
 
     -translate-x-1/2
 
-    w-[1200px]
-    md:w-[2400px]
+    w-[1400px]
+    md:w-[2600px]
 
-    opacity-[0.16]
+    opacity-[0.11]
 
-    blur-[6px]
+    blur-[10px]
 
     scale-[1.45]
 

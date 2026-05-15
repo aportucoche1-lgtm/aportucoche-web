@@ -55,99 +55,54 @@ export function Home({ onNavigate, onOpenAuth }: HomeProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F7FA] overflow-hidden">
+    <div className="min-h-screen bg-[#F7F8FA] overflow-hidden">
 
       {/* HERO */}
-      <section className="relative pt-16 pb-20 px-4 md:px-6 overflow-hidden">
+      <section className="relative pt-16 pb-14 px-6 overflow-hidden">
 
-        {/* WATERMARK */}
-   <img
-  src="/logo.png"
-  alt="watermark"
-  className="
-    absolute
-    left-1/2
-    top-[-40px]
+        {/* WATERMARK LOGO */}
+        <img
+          src="/logo.png"
+          alt="watermark"
+          className="
+            absolute
+            left-1/2
+            top-[55%]
+            -translate-x-1/2
+            -translate-y-1/2
+            w-[950px]
+            md:w-[1200px]
+            opacity-[0.12]
+            blur-[3px]
+            pointer-events-none
+            select-none
+          "
+        />
 
-    -translate-x-1/2
-
-    w-[1400px]
-    md:w-[2600px]
-
-    opacity-[0.17]
-
-    blur-[4px]
-
-    scale-[1.45]
-
-    pointer-events-none
-    select-none
-  "
-/>
         <div className="relative z-10 max-w-6xl mx-auto text-center">
 
           {/* TITULO */}
-          <h1
-            className="
-            text-[42px]
-md:text-[72px]
-              font-black
-              tracking-[-2px]
-              leading-none
-              text-[#13233A]
-            "
-          >
+          <h1 className="text-4xl md:text-6xl font-black text-[#13233A] leading-tight">
             Encuentra tu coche ideal
           </h1>
 
           {/* SUBTITULO */}
-          <p
-            className="
-              text-gray-600
-              max-w-3xl
-              mx-auto
-              mt-6
-              mb-12
-              text-lg
-              md:text-[22px]
-            "
-          >
+          <p className="text-gray-600 max-w-3xl mx-auto mt-5 mb-12 text-lg md:text-xl">
             Busca en todas las plataformas desde un solo sitio.
           </p>
 
           {/* BUSCADOR */}
-          <div
-            className="
-              max-w-5xl
-              mx-auto
-              bg-white
-              rounded-[34px]
-              shadow-2xl
-              border
-              border-gray-100
-              p-5
-              md:p-8
-            "
-          >
+          <div className="max-w-5xl mx-auto bg-white rounded-[32px] shadow-xl border border-gray-100 p-6 md:p-8">
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-              {/* MARCA */}
               <select
                 value={brand}
                 onChange={(e) => {
                   setBrand(e.target.value);
                   setModel('');
                 }}
-                className="
-                  border
-                  border-gray-200
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-lg
-                  bg-white
-                "
+                className="border border-gray-200 rounded-2xl px-5 py-4 text-lg bg-white"
               >
                 <option value="">Seleccionar marca</option>
 
@@ -158,20 +113,11 @@ md:text-[72px]
                 ))}
               </select>
 
-              {/* MODELO */}
               <select
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
+                className="border border-gray-200 rounded-2xl px-5 py-4 text-lg bg-white"
                 disabled={!brand}
-                className="
-                  border
-                  border-gray-200
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-lg
-                  bg-white
-                "
               >
                 <option value="">
                   {brand ? 'Seleccionar modelo' : 'Primero marca'}
@@ -184,19 +130,10 @@ md:text-[72px]
                 ))}
               </select>
 
-              {/* COMBUSTIBLE */}
               <select
                 value={fuel}
                 onChange={(e) => setFuel(e.target.value)}
-                className="
-                  border
-                  border-gray-200
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-lg
-                  bg-white
-                "
+                className="border border-gray-200 rounded-2xl px-5 py-4 text-lg bg-white"
               >
                 <option value="">Combustible</option>
                 <option value="gasolina">Gasolina</option>
@@ -205,35 +142,26 @@ md:text-[72px]
                 <option value="electric">Eléctrico</option>
               </select>
 
-              {/* PROVINCIA */}
               <input
                 placeholder="Provincia"
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
-                className="
-                  border
-                  border-gray-200
-                  rounded-2xl
-                  px-5
-                  py-4
-                  text-lg
-                  md:col-span-2
-                "
+                className="border border-gray-200 rounded-2xl px-5 py-4 text-lg md:col-span-2"
               />
 
-              {/* BOTON */}
               <button
                 onClick={handleSearch}
                 className="
                   bg-black
+                  hover:bg-[#111]
+                  transition
                   text-white
                   rounded-2xl
                   font-bold
                   text-lg
                   px-6
                   py-4
-                  hover:opacity-90
-                  transition
+                  shadow-lg
                 "
               >
                 Buscar coches
@@ -242,54 +170,25 @@ md:text-[72px]
             </div>
 
           </div>
-
         </div>
       </section>
 
       {/* PLATAFORMAS */}
-      <section className="border-y bg-white py-6 px-4">
-
-        <div
-          className="
-            max-w-6xl
-            mx-auto
-            flex
-            flex-wrap
-            justify-center
-            gap-6
-            md:gap-10
-            text-sm
-            md:text-base
-            text-gray-500
-          "
-        >
-          <span className="font-medium">
-            ANUNCIOS DE:
-          </span>
+      <section className="border-y bg-white py-5 px-6">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-8 text-sm text-gray-500">
+          <span>ANUNCIOS DE:</span>
 
           {platforms.map((p) => (
-            <span key={p}>
-              {p}
-            </span>
+            <span key={p}>{p}</span>
           ))}
         </div>
-
       </section>
 
       {/* COCHES */}
-      <section className="py-20 px-4 md:px-6">
-
+      <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
 
-          <h2
-            className="
-              text-4xl
-              md:text-5xl
-              font-black
-              text-[#13233A]
-              mb-10
-            "
-          >
+          <h2 className="text-3xl font-black mb-8 text-[#13233A]">
             Ejemplos de coches
           </h2>
 
@@ -313,36 +212,19 @@ md:text-[72px]
             ))}
 
           </div>
-
         </div>
-
       </section>
 
       {/* CTA */}
-      <section className="bg-black text-white py-24 text-center px-4">
+      <section className="bg-black text-white py-20 text-center">
 
-        <h2
-          className="
-            text-4xl
-            md:text-5xl
-            font-black
-            mb-6
-          "
-        >
+        <h2 className="text-4xl font-black mb-4">
           Empieza a buscar coches ahora
         </h2>
 
         <button
           onClick={onOpenAuth}
-          className="
-            bg-white
-            text-black
-            px-10
-            py-4
-            rounded-2xl
-            font-bold
-            text-lg
-          "
+          className="bg-white text-black px-8 py-3 rounded-xl font-bold"
         >
           Crear cuenta gratis
         </button>
